@@ -34,13 +34,41 @@ module.exports = (sequelize, DataTypes) => {
   Event.init({
     venueId: DataTypes.INTEGER,
     groupId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    type: DataTypes.ENUM('placeholder','placeholder1'),
+    name: {
+      type:DataTypes.STRING,
+      validate:{
+        len:[5,100]
+      }
+    },
+    description: {
+      type:DataTypes.TEXT,
+      allowNull:false
+    },
+    type: DataTypes.ENUM('Online','In person'),
     capacity: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE
+    startDate: {
+      type:DataTypes.DATE,
+      validate:{
+        future(value){
+             const currentDate = new Date()
+             const theirDate = new Date(value)
+             if (currentDate > theirDate){
+              throw new Error("Start date must be in the future")
+             }
+        }
+      }
+    },
+    endDate: {
+      type:DataTypes.DATE,
+      validate:{
+         farther(value){
+            if (this.startDate > value){
+              throw new Error("End date is less than start date")
+            }
+         }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Event',

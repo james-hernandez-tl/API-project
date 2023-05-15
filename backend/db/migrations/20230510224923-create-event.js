@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       type: {
-        type: Sequelize.ENUM('placeholder','placeholder1')
+        type: Sequelize.ENUM('Online','In person')
       },
       capacity: {
         type: Sequelize.INTEGER
