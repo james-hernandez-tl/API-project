@@ -93,7 +93,10 @@ router.get('/current', async (req,res)=>{
             attributes:['id','firstName','lastName'],
             as:'Organizer'
         },{
-            model:Venue
+            model:Venue,
+            attributes:{
+              exclude:['updatedAt','createdAt']
+            }
         }]
     })
 
@@ -117,6 +120,20 @@ router.get('/current', async (req,res)=>{
 
     if (user){
         const {name , about , type, private, city, state } = req.body
+        let errorResult = {message:"Bad Request", errors:{}}
+
+        if (name.length > 60) errorResult.errors.name = "Name must be 60 characters or less"
+        if (about.length < 50 ) errorResult.errors.about =  "About must be 50 characters or more"
+        if (type !== 'Online' && type !== 'In person') errorResult.errors.type = "Type must be 'Online' or 'In person'"
+        if (private !== true && private !== false) errorResult.errors.private = "Private must be a boolean"
+        if (!city) errorResult.errors.city = "City is required"
+        if (!state) errorResult.errors.state = "State is required"
+
+        if (Object.keys(errorResult.errors).length) {
+          res.status(400)
+          res.json(errorResult)
+        }
+
         let newGroup = {
             organizerId: req.user.id,
             name,
@@ -126,12 +143,16 @@ router.get('/current', async (req,res)=>{
             city,
             state
         }
+
+
+
         const testing = await Group.build(newGroup)
         // console.log(newGroup)
         try {
             const valid = await testing.validate()
             // newGroup.save()
             newGroup = await Group.create(newGroup)
+            res.status(201)
             res.json(newGroup)
         }catch{
             res.status(400),
@@ -205,6 +226,7 @@ router.get('/current', async (req,res)=>{
   router.put('/:groupId', async (req,res)=>{
     const {user} = req
 
+
     if (user){
         let group = await Group.findByPk(req.params.groupId)
         if (!group ){
@@ -220,6 +242,22 @@ router.get('/current', async (req,res)=>{
         }
 
         const {name ,about, type, private, city, state } = req.body
+
+
+        let errorResult = {message:"Bad Request", errors:{}}
+
+        if (name.length > 60) errorResult.errors.name = "Name must be 60 characters or less"
+        if (about.length < 50 ) errorResult.errors.about =  "About must be 50 characters or more"
+        if (type !== 'Online' && type !== 'In person') errorResult.errors.type = "Type must be 'Online' or 'In person'"
+        if (private !== true && private !== false) errorResult.errors.private = "Private must be a boolean"
+        if (!city) errorResult.errors.city = "City is required"
+        if (!state) errorResult.errors.state = "State is required"
+
+        if (Object.keys(errorResult.errors).length) {
+          res.status(400)
+          res.json(errorResult)
+        }
+
 
         if (name) group.name = name
         if (about)  group.about = about
