@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 var validator = require('validator');
 
 
-const { Sequelize, User, Group, Membership, GroupImage, Venue } = require('../../db/models');
+const { Sequelize, User, Group, Membership, GroupImage, Venue,Event, EventImage, Attendance } = require('../../db/models');
 
 const {requireAuth} = require('../../utils/auth')
 const router = express.Router();
@@ -391,12 +391,12 @@ router.get('/current', async (req,res)=>{
     if (group.organizerId !== req.user.id && !membership ){
       res.status(401)
         return res.json({
-            "message": "Authentication required"
+            "message": "Forbidden"
           })
     }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
       res.status(401)
         return res.json({
-            "message": "Authentication required"
+            "message": "Forbidden"
           })
     }
 
@@ -437,12 +437,12 @@ router.get('/current', async (req,res)=>{
     if (group.organizerId !== req.user.id && !membership ){
       res.status(401)
         return res.json({
-            "message": "Authentication required"
+            "message": "Forbidden"
           })
     }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
       res.status(401)
         return res.json({
-            "message": "Authentication required"
+            "message": "Forbidden"
           })
     }
 
@@ -479,6 +479,63 @@ router.get('/current', async (req,res)=>{
     return res.json(newVenue)
 
   })
+
+  router.get('/:groupId/events', async (req,res)=>{
+    const group = await Group.findAll({
+      where:{
+        id:req.params.groupId
+      }
+    })
+
+    if (!group.length){
+      res.status(404)
+      return res.json({
+        "message": "Group couldn't be found"
+      })
+    }
+
+    const allEvents = await Event.findAll({
+      where:{
+        groupId:req.params.groupId
+      },
+      attributes:{
+          exclude:['updatedAt','createdAt','description','capacity','price']
+      },
+      include:[{
+          model:Group,
+          attributes:['id','name','city','state']
+      },{
+          model:Venue,
+          attributes:['id','city','state']
+      },{
+          model:EventImage,
+          where:{
+              preview:true
+          },
+          required:false
+      }]
+  })
+
+  let newEvents = []
+
+  for (let event of allEvents){
+      event = event.toJSON()
+      const numAttending = await Attendance.count({
+          where:{
+              eventId:event.id
+          }
+      })
+      event.numAttending = numAttending
+
+      event.previewImage = event.EventImages[0]? event.EventImages[0].url: null
+
+      delete event.EventImages
+      newEvents.push(event)
+  }
+
+  res.json({Events:newEvents})
+  })
+
 
 
 
