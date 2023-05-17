@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     options.tableName = 'Groups';
-    queryInterface.bulkInsert(options, [
+    return queryInterface.bulkInsert(options, [
       {
         organizerId:4,
         name:'Playing apex',

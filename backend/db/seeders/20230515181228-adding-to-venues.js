@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     options.tableName = 'Venues';
-    queryInterface.bulkInsert(options, [
+    return queryInterface.bulkInsert(options, [
       {
         groupId:2,
         address:"townHall",
