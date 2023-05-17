@@ -27,13 +27,17 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Event.belongsTo(models.Group, {
-        foreignKey:'groupId'
+        foreignKey:'groupId',
+        onDelete:'CASCADE'
       })
     }
   }
   Event.init({
     venueId: DataTypes.INTEGER,
-    groupId: DataTypes.INTEGER,
+    groupId: {
+      type:DataTypes.INTEGER,
+      onDelete:'CASCADE'
+    },
     name: {
       type:DataTypes.STRING,
       validate:{
