@@ -3,18 +3,48 @@ const bcrypt = require('bcryptjs');
 var validator = require('validator');
 
 
-const { User, Group, Membership, GroupImage, Venue } = require('../../db/models');
+const { Sequelize, User, Group, Membership, GroupImage, Venue } = require('../../db/models');
 
 const {requireAuth} = require('../../utils/auth')
 const router = express.Router();
 
+const Op = Sequelize.Op;
 
 router.get('/', async (req,res)=>{
    const groups = await Group.findAll({
-    order:[['organizerId']]
+     include:{
+        model:GroupImage,
+        where:{
+          preview:true,
+        },
+        attributes:['url'],
+        required:false,
+     }
    })
+   let newGroups = []
 
-   res.json({'Groups': groups})
+   for (let group of groups){
+      group = group.toJSON()
+      let groupId = group.id
+      let numMembers = await Membership.count({
+        where:{
+          groupId,
+          status:{
+            [Op.in]:['co-host','member']
+          }
+        }
+      })
+
+      group.numMembers = numMembers
+
+      let {url} = group.GroupImages[0]? group.GroupImages[0]: {url:null}
+
+      group.previewImage = url
+      delete group.GroupImages
+      newGroups.push(group)
+   }
+
+   res.json({'Groups': newGroups})
 })
 
 router.get('/current', async (req,res)=>{
@@ -29,7 +59,10 @@ router.get('/current', async (req,res)=>{
         //  groups= groups.toJSON()
         const mems = await Membership.findAll({
             where:{
-                userId:req.user.id
+                userId:req.user.id,
+                status:{
+                  [Op.in]:['co-host','member']
+                }
             }
            })
 
@@ -49,10 +82,15 @@ router.get('/current', async (req,res)=>{
            for (let group of groups.concat(allGroups)){
             group = group.toJSON()
             let numMembers = await Membership.count({
-                where:{groupId:group.id}
+              where:{
+                groupId:group.id,
+                status:{
+                  [Op.in]:['co-host','member']
+                }
+              }
             })
 
-            group.numMembers = numMembers + 1
+            group.numMembers = numMembers
             if( group.GroupImages.length == 0){
                 console.log('adsfa')
                 delete group.GroupImages
@@ -106,7 +144,10 @@ router.get('/current', async (req,res)=>{
       })
     }
     const numMembers = await Membership.count({
-        where:{groupId}
+        where:{groupId},
+        status:{
+          [Op.in]:['co-host','member']
+        }
     })
     group = group.toJSON()
     group.numMembers = numMembers
