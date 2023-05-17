@@ -20,8 +20,8 @@ module.exports = {
         type: "In person",
         capacity: 10,
         price: 18.50,
-        startDate: new Date("2021-10-19"),
-        endDate: new Date("2021-10-19"),
+        startDate: new Date("2021-9-19"),
+        endDate: new Date("2021-9-19"),
       },
       {
         groupId: 3,
@@ -31,8 +31,8 @@ module.exports = {
         type: "Online",
         capacity: 20,
         price: 48.50,
-        startDate: new Date("2021-11-19"),
-        endDate: new Date("2021-11-19"),
+        startDate: new Date("2021-10-19"),
+        endDate: new Date("2021-10-19"),
       },
       {
         groupId: 4,
@@ -42,8 +42,8 @@ module.exports = {
         type: "In person",
         capacity: 15,
         price: 10.50,
-        startDate: new Date("2021-12-19"),
-        endDate: new Date("2021-12-19"),
+        startDate: new Date("2021-11-19"),
+        endDate: new Date("2021-11-19"),
       },
       {
         groupId: 2,
@@ -53,8 +53,8 @@ module.exports = {
         type: "In person",
         capacity: 10,
         price: 18.50,
-        startDate: new Date("2021-13-19"),
-        endDate: new Date("2021-13-19"),
+        startDate: new Date("2021-12-19"),
+        endDate: new Date("2021-12-19"),
       },
     ], {});
   },

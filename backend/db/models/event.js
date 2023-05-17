@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
     startDate: {
-      type:DataTypes.DATE,
+      type:DataTypes.DATEONLY,
       validate:{
         future(value){
              const currentDate = new Date()
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     endDate: {
-      type:DataTypes.DATE,
+      type:DataTypes.DATEONLY,
       validate:{
          farther(value){
             if (this.startDate > value){
