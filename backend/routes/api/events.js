@@ -27,7 +27,6 @@ router.get('/', async (req,res)=>{
             required:false
         }]
     })
-
     let newEvents = []
 
     for (let event of allEvents){
