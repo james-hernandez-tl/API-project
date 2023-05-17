@@ -1,12 +1,11 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+var validator = require('validator');
 
 
 const { User, Group, Membership, GroupImage, Venue } = require('../../db/models');
 
-
-
-
+const {requireAuth} = require('../../utils/auth')
 const router = express.Router();
 
 
@@ -200,7 +199,7 @@ router.get('/current', async (req,res)=>{
         try {
             let newGroupImage = await GroupImage.create({
                url,
-               preview: preview == 'true'?true:false
+               preview
             })
 
             newGroupImage = await GroupImage.findOne({
@@ -325,6 +324,122 @@ router.get('/current', async (req,res)=>{
     }
 
   })
+
+
+  router.get('/:groupId/venues', requireAuth , async (req,res)=>{
+    const group = await Group.findOne({
+      where:{
+        id:req.params.groupId
+      }
+    })
+
+    if (!group){
+      res.status(404)
+      res.json({
+        "message": "Group couldn't be found"
+      })
+    }
+
+    const membership = await Membership.findOne({
+      where:{
+        groupId:req.params.groupId,
+        userId:req.user.id
+      }
+    })
+
+    if (group.organizerId !== req.user.id && !membership ){
+      res.status(401)
+        res.json({
+            "message": "Authentication required"
+          })
+    }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
+      res.status(401)
+        res.json({
+            "message": "Authentication required"
+          })
+    }
+
+    const venue = await Venue.findAll({
+      where:{
+        groupId:req.params.groupId
+      },
+      attributes:{
+        exlude:['updatedAt','createdAt']
+      }
+    })
+
+    res.json({Venues:venue})
+
+  } )
+
+  router.post('/:groupId/venues', requireAuth, async (req,res)=>{
+    const group = await Group.findOne({
+      where:{
+        id:req.params.groupId
+      }
+    })
+
+    if (!group){
+      res.status(404)
+      res.json({
+        "message": "Group couldn't be found"
+      })
+    }
+
+    const membership = await Membership.findOne({
+      where:{
+        groupId:req.params.groupId,
+        userId:req.user.id
+      }
+    })
+
+    if (group.organizerId !== req.user.id && !membership ){
+      res.status(401)
+        res.json({
+            "message": "Authentication required"
+          })
+    }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
+      res.status(401)
+        res.json({
+            "message": "Authentication required"
+          })
+    }
+
+    const {address, city, state, lat, lng} = req.body
+
+    let errorResult = {message: "Bad Request",errors: {}}
+
+    if (!address) errorResult.errors.address = "Street address is required"
+    if (!city)  errorResult.errors.city = "City is required"
+    if (!state) errorResult.errors.state = "State is required"
+    if (!validator.isLatLong(lat.toString()+','+lng.toString())){
+      errorResult.errors.lat = "Latitude is not valid"
+      errorResult.errors.lan = "Longitude is not valid"
+    }
+
+    if (Object.keys(errorResult.errors).length){
+      res.status(400)
+      res.json(errorResult)
+    }
+
+    let newVenue = await Venue.create({
+      groupId:Number(req.params.groupId),
+      address,
+      city,
+      state,
+      lat,
+      lng
+    })
+
+    newVenue = newVenue.toJSON()
+    delete newVenue.createdAt
+    delete newVenue.updatedAt
+
+    res.json(newVenue)
+
+  })
+
+
 
 
 module.exports = router;
