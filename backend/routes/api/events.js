@@ -10,7 +10,34 @@ const router = express.Router();
 
 
 router.get('/', async (req,res)=>{
+
+  let {page, size, name, type, startDate} = req.query
+
+  let errorResult = {message: "Bad Request",errors: {}}
+
+  if (page && page < 1) errorResult.errors.page = "Page must be greater than or equal to 1"
+  if (size && size < 1) errorResult.errors.size = "size must be greater than or equal to 1"
+  if (name || typeof name !== 'string') errorResult.errors.name = "Name must be a string"
+  if (type && type !== 'Online'  && type !== 'In person') errorResult.errors.type = "Type must be 'Online' or 'In Person'"
+  if (startDate && !Date.parse(startDate)) errorResult.errors.startDate = "Start date must be a valid datetime"
+
+  const pag = {}
+
+  if (!page || page > 10) page = 1
+  if (!size || size > 20) size = 20
+
+  pag.limit = size
+  pag.offset = size * (page - 1)
+
+  const where = {}
+
+  if (name) where.name = name
+  if (type) where.type = type
+  if (startDate) where.startDate == startDate
+
     const allEvents = await Event.findAll({
+        ...pag,
+        where,
         attributes:{
             exclude:['updatedAt','createdAt','description','capacity','price']
         },
@@ -148,6 +175,12 @@ router.put('/:eventId',requireAuth, async (req,res)=>{
     if (venueId){
       const venue = await Venue.findByPk(venueId)
       if(!venue) errorResult.errors.venueId = "Venue does not exist"
+    }
+
+    let validPrice = price.toString().split('.')
+    console.log(validPrice)
+    if (Number.isNaN(price) || validPrice[1].length > 2)  {
+      errorResult.errors.price = "Price is invalid"
     }
 
     if (!name || name.length < 5) errorResult.errors.name = "Name must be at least 5 characters"
@@ -467,7 +500,47 @@ router.get('/:eventId/attendees', async (req,res)=>{
   })
 
 router.post('/:eventId/images',requireAuth, async (req,res)=>{
+   const event = await Event.findByPk(req.params.eventId)
 
+   if (!event){
+    res.status(404)
+    return res.json({
+      "message": "Event couldn't be found"
+    })
+   }
+
+   const group = await Group.findByPk(event.groupId)
+
+
+   const attend = await Attendance.findOne({
+     where:{
+       userId:req.user.id,
+       eventId:event.id,
+       status:'attending'
+      }
+    })
+
+    let membership = await Membership.findOne({
+      where:{
+        userId: req.user.id,
+        groupId:event.groupId,
+        status:'co-host'
+      }
+    })
+
+    if (group.organizerId!== req.user.id && !membership && !attend){
+      res.status(403)
+      return res.json({
+        "message": "Forbidden"
+      })
+    }
+
+
+    const {url,preview} = req.body
+
+    // const newImage = await GroupImage.create{
+
+    // }
 })
 
 module.exports = router;

@@ -52,25 +52,25 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER,
     price: DataTypes.DECIMAL,
     startDate: {
-      type:DataTypes.DATEONLY,
+      type:DataTypes.DATE,
       validate:{
-        future(value){
-             const currentDate = new Date()
-             const theirDate = new Date(value)
-             if (currentDate > theirDate){
-              throw new Error("Start date must be in the future")
-             }
-        }
+        // future(value){
+        //   const currentDate = new Date()
+        //   const theirDate = new Date(value.split("T")[0])
+        //   if (currentDate > theirDate){
+        //     throw new Error("Start date must be in the future")
+        //   }
+        // }
       }
     },
     endDate: {
-      type:DataTypes.DATEONLY,
+      type:DataTypes.DATE,
       validate:{
-         farther(value){
-            if (this.startDate > value){
-              throw new Error("End date is less than start date")
-            }
-         }
+        //  farther(value){
+        //     if (this.startDate > value){
+        //       throw new Error("End date is less than start date")
+        //     }
+        //  }
       }
     }
   }, {

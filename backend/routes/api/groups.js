@@ -11,6 +11,7 @@ const router = express.Router();
 const Op = Sequelize.Op;
 
 router.get('/', async (req,res)=>{
+
    const groups = await Group.findAll({
      include:{
         model:GroupImage,
@@ -389,12 +390,12 @@ router.get('/current', async (req,res)=>{
     })
 
     if (group.organizerId !== req.user.id && !membership ){
-      res.status(401)
+      res.status(403)
         return res.json({
             "message": "Forbidden"
           })
     }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
-      res.status(401)
+      res.status(403)
         return res.json({
             "message": "Forbidden"
           })
@@ -580,18 +581,25 @@ router.get('/current', async (req,res)=>{
       if(!venue) errorResult.errors.venueId = "Venue does not exist"
     }
 
+    let validPrice = price.toString().split('.')
+    console.log(validPrice)
+    if (Number.isNaN(price) || validPrice[1].length > 2)  {
+      errorResult.errors.price = "Price is invalid"
+    }
+
+
     if (!name || name.length < 5) errorResult.errors.name = "Name must be at least 5 characters"
     if (type && type !== 'Online' && type !=='In person') errorResult.errors.type = "Type must be Online or In person"
     if (!capacity || typeof capacity !== 'number') errorResult.errors.capacity = "Capacity must be an integer"
-    if (!price || typeof price !== 'number') errorResult.errors.price = "Price is invalid"
+    // if (!price || typeof price !== 'number') errorResult.errors.price = "Price is invalid"
     if (!description) errorResult.errors.description = "Description is required"
     if (startDate){
-             const currentDate = new Date()
-             const theirDate = new Date(startDate)
-             if (currentDate > theirDate){
-              errorResult.errors.startDate = "Start date must be in the future"
-             }
-    }
+      const currentDate = new Date()
+      const theirDate = new Date(startDate)
+      if (currentDate > theirDate){
+       errorResult.errors.startDate = "Start date must be in the future"
+      }
+}
 
     if (endDate && startDate){
        if (endDate < startDate) errorResult.errors.endDate = "End date is less than start date"
