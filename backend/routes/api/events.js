@@ -538,9 +538,13 @@ router.post('/:eventId/images',requireAuth, async (req,res)=>{
 
     const {url,preview} = req.body
 
-    // const newImage = await GroupImage.create{
+    const newImage = await EventImage.create({
+      url,
+      preview,
+      eventId:event.id
+    })
 
-    // }
+    res.json(newImage)
 })
 
 module.exports = router;
