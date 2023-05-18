@@ -538,11 +538,16 @@ router.post('/:eventId/images',requireAuth, async (req,res)=>{
 
     const {url,preview} = req.body
 
-    const newImage = await EventImage.create({
+    let newImage = await EventImage.create({
       url,
       preview,
       eventId:event.id
     })
+
+    newImage = newImage.toJSON()
+    delete newImage.eventId
+    delete newImage.updatedAt
+    delete newImage.createdAt
 
     res.json(newImage)
 })
