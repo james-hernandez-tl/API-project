@@ -241,7 +241,8 @@ router.get('/current', async (req,res)=>{
         try {
             let newGroupImage = await GroupImage.create({
                url,
-               preview
+               preview,
+               groupId:req.params.groupId
             })
 
             newGroupImage = await GroupImage.findOne({
@@ -436,12 +437,12 @@ router.get('/current', async (req,res)=>{
     })
 
     if (group.organizerId !== req.user.id && !membership ){
-      res.status(401)
+      res.status(403)
         return res.json({
             "message": "Forbidden"
           })
     }else if (group.organizerId !== req.user.id && membership.status !== "co-host"){
-      res.status(401)
+      res.status(403)
         return res.json({
             "message": "Forbidden"
           })
