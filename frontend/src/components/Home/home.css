@@ -1,0 +1,26 @@
+.home-section1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.home-section2 {
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.home-section3 {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+
+.disable {
+    color: lightgray;
+    pointer-events: none;
+}
+
+.home-section4 {
+    width: fit-content;
+    margin: auto;
+}
