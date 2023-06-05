@@ -8,7 +8,7 @@ export default function Home() {
     const [disableStart,setDisableStart] = useState(true)
 
     useEffect(()=>{
-        console.log(user)
+        // console.log(user)
        if (user) setDisableStart(false)
        else setDisableStart (true)
     },[user])
@@ -40,7 +40,7 @@ export default function Home() {
             <div className="home-section3">
                 <div className="home-seeGroup">
                     <div className="home-img">img</div>
-                    <NavLink exact={true} to="">See all groups</NavLink>
+                    <NavLink exact={true} to="/groups">See all groups</NavLink>
                     <div className="home-section3-captions">Look at all the wonderful groups for you to join!</div>
                 </div>
                 <div className="home-findEvents">
