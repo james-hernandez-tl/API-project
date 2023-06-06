@@ -1,5 +1,6 @@
 .EventsLayout {
     border: solid black 3px;
+    cursor: pointer;
 }
 
 .EventsLayout-top-half {

@@ -25,7 +25,7 @@ export default function Events({group}){
 
     let allEvents = Object.values(allEventsState)
     allEvents = allEvents.sort(sortingEvents)
-    console.log("allevents",allEvents)
+    // console.log("allevents",allEvents)
 
     allEvents.forEach(event => {
         let currentDate = new Date()
