@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import AllGroups from "./components/allGroups";
+import SingelGroup from "./components/SingelGroup/SingelGroup";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,9 +22,13 @@ function App() {
          <Route exact path="/">
               <Home />
          </Route>
-               <AllGroups />
-         <Route exact path="/groups">
 
+         <Route exact path="/groups">
+               <AllGroups />
+         </Route>
+
+         <Route exact path="/groups/:groupId">
+              <SingelGroup />
          </Route>
       </Switch>}
     </>

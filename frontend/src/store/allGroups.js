@@ -58,8 +58,10 @@ export const setAllGroupsThunk = () => async (dispatch) => {
     dispatch(setAllGroupsAction(allGroups))
 }
 
-export const setGroupThunk = (group) => async (dispatch) => {
-    return
+export const setGroupThunk = (groupId) => async (dispatch) => {
+    let group = await csrfFetch(`/api/groups/${groupId}`)
+    group = await group.json()
+    console.log(group)
 }
 
 
