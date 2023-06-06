@@ -1,0 +1,13 @@
+.singleGroup-top-half-main {
+    display: flex;
+}
+
+.singleGroup-button {
+    background-color: red;
+    color: white;
+}
+
+.singleGroup-button-holder > button {
+    background-color: darkgray ;
+    color: white;
+}

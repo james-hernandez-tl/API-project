@@ -1,8 +1,15 @@
 import "./GroupLayout.css"
+import { useHistory } from "react-router-dom"
 
 export default function GroupLayout({group}){
+
+    const history=useHistory()
+
+    const groupClicker = () => {
+        history.push(`/groups/${group.id}`)
+    }
      return (
-        <div className="group-layout">
+        <div onClick={groupClicker} className="group-layout">
             {/* <hr /> */}
             <div className="group-layout-img">medium img</div>
             <div className="group-layout-text">
