@@ -1,0 +1,7 @@
+.EventsLayout {
+    border: solid black 3px;
+}
+
+.EventsLayout-top-half {
+    display: flex;
+}

@@ -501,7 +501,7 @@ router.get('/current', async (req,res)=>{
         groupId:req.params.groupId
       },
       attributes:{
-          exclude:['updatedAt','createdAt','description','capacity','price']
+          exclude:['updatedAt','createdAt','capacity','price']
       },
       include:[{
           model:Group,

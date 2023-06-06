@@ -4,6 +4,7 @@ import { useEffect,useState } from "react"
 import { setGroupThunk } from "../../store/allGroups"
 import { Link } from "react-router-dom"
 import "./singelGroup.css"
+import Events from "../events/Events"
 
 
 export default function SingelGroup(){
@@ -43,6 +44,7 @@ export default function SingelGroup(){
                 </div>
              </div>
         </div>
+        <Events group={group}/>
         </>
     )
 }
