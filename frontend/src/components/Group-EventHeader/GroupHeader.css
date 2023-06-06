@@ -1,5 +1,10 @@
 .active{
     color: teal;
-    text-decoration: none;
+    /* text-decoration: none; */
     pointer-events: none;
+}
+
+.inActive {
+    color: gray;
+    text-decoration: none;
 }

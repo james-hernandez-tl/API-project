@@ -1,3 +1,5 @@
 .group-layout {
     display: flex;
+    cursor:pointer;
+    border-top: solid gray 2px;
 }

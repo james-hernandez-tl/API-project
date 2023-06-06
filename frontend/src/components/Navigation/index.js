@@ -33,6 +33,9 @@ function Navigation({ isLoaded }) {
   }
 
   return (
+    <div>
+      <NavLink className="logo" exact={true} to="/">Meetup</NavLink>
+
     <ul>
       <li>
         <NavLink exact to="/">
@@ -41,6 +44,7 @@ function Navigation({ isLoaded }) {
       </li>
       {isLoaded && sessionLinks}
     </ul>
+    </div>
   );
 }
 

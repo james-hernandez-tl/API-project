@@ -1,3 +1,8 @@
 .hidden {
     display: none;
 }
+
+.logo {
+    color: orange;
+    text-decoration: none;
+}
