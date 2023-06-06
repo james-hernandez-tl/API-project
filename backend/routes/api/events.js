@@ -39,7 +39,7 @@ router.get('/', async (req,res)=>{
         ...pag,
         where,
         attributes:{
-            exclude:['updatedAt','createdAt','description','capacity','price']
+            exclude:['updatedAt','createdAt','capacity','price']
         },
         include:[{
             model:Group,

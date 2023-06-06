@@ -42,6 +42,11 @@ const removeEventAction = (eventId) => {
 }
 
 // thunk
+export const setEveryEventsThunk = () => async (dispatch) => {
+    let allEvents = await csrfFetch(`/api/events`)
+    allEvents = await allEvents.json()
+    dispatch(setAllEventsAction(allEvents.Events))
+}
 
 export const setAllEventsThunk = (groupId) => async (dispatch) => {
     let allEvents = await csrfFetch(`/api/groups/${groupId}/events`)

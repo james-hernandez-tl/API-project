@@ -6,3 +6,8 @@
 .EventsLayout-top-half {
     display: flex;
 }
+
+.everyEvent-layout{
+   border-top: solid black 2px;
+   cursor: pointer;
+}

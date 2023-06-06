@@ -45,7 +45,7 @@ export default function Home() {
                 </div>
                 <div className="home-findEvents">
                     <div className="home-img">img</div>
-                    <NavLink exact={true} to="">find an event</NavLink>
+                    <NavLink exact={true} to="/events">find an event</NavLink>
                     <div className="home-section3-captions">Look at all the wonderful groups for you to join!</div>
                 </div>
 

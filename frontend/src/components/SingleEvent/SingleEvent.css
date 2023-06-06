@@ -1,0 +1,24 @@
+.singleEvent-content {
+    background-color: gray;
+}
+
+.singleEvent-content-top-half {
+    display: flex;
+}
+
+.singleEvent-content-top-half-right-top {
+    display: flex;
+}
+
+.singleEvent-content-top-half-right-bottom > div {
+    display: flex;
+}
+
+.singleEvent-button {
+    background-color: darkgray;
+    color: white;
+}
+
+.singleEvent-button-holder {
+    display: flex;
+}

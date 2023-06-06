@@ -44,11 +44,11 @@ export default function Events({group}){
             </div>
             {upCommingEvents.length > 0 && <h2>Upcoming Events ({upCommingEvents.length})</h2>}
             {upCommingEvents.length > 0 && upCommingEvents.map(event=> (
-                <EventsLayout event={event} key={event.id}/>
+                <EventsLayout event={event} key={event.id} where={"EventsLayout"}/>
             )) }
             {pastEvents.length > 0 && <h2>Past Events ({pastEvents.length})</h2>}
             {pastEvents.length > 0 && pastEvents.map(event=> (
-                <EventsLayout event={event} key={event.id}/>
+                <EventsLayout event={event} key={event.id} where={"EventsLayout"}/>
             )) }
         </div>
     )

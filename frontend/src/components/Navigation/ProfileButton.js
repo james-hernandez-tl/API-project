@@ -49,6 +49,9 @@ function ProfileButton({ user }) {
         <li>
           <Link exact={"true"} to="/groups">View Groups</Link>
         </li>
+        <li>
+          <Link exact={"true"} to="/events">View Events</Link>
+        </li>
       </ul>
     </>
   );

@@ -39,7 +39,7 @@ function Navigation({ isLoaded }) {
     <ul>
       <li>
         <NavLink exact to="/">
-          Home
+          Meetup
         </NavLink>
       </li>
       {isLoaded && sessionLinks}
