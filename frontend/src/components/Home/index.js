@@ -51,7 +51,7 @@ export default function Home() {
 
                 <div className="home-startGroup">
                     <div className="home-img">img</div>
-                    <NavLink className={disableStart?"disable":""} exact={true} to="" onClick={startGroupClicker} >Start a new group</NavLink>
+                    <NavLink className={disableStart?"disable":""} exact={true} to="/groups/new" onClick={startGroupClicker} >Start a new group</NavLink>
                     <div className="home-section3-captions" >Look at all the wonderful groups for you to join!</div>
                 </div>
 

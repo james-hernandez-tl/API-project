@@ -64,6 +64,44 @@ export const setGroupThunk = (groupId) => async (dispatch) => {
     dispatch(setGroupAction(group))
 }
 
+export const createGroupThunk = (group) => async (dispatch) => {
+    let newGroup = await csrfFetch(`/api/groups`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            name:group.id,
+            about:group.about,
+            type:group.type,
+            private:group.private,
+            city:group.city,
+            state:group.state
+          })
+    })
+
+    newGroup = await newGroup.json()
+
+    const obj = {
+        url:group.url,
+        groupId:newGroup.id
+    }
+
+    const image = await dispatch(addGroupImageThunk(obj))
+
+    return newGroup
+
+}
+
+export const addGroupImageThunk = (obj) => async (dispatch) => {
+    let image = await csrfFetch(`/api/groups/${obj.groupId}/images`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            url:obj.url,
+            preview:true
+        })
+    })
+}
+
 
 // reducer
 

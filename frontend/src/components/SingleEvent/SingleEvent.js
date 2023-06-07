@@ -23,11 +23,11 @@ export default function SingleEvent() {
 
     useEffect(() => {
         dispatch(setEventThunk(eventId))
-    }, [eventId])
+    }, [eventId,dispatch])
 
     useEffect(() => {
         if (event.groupId) dispatch(setGroupThunk(event.groupId))
-    }, [event])
+    }, [event,dispatch])
 
     // useEffect()
 
@@ -44,7 +44,7 @@ export default function SingleEvent() {
                     <div><img className="singleEvent-deatail-img" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
                     <div className="singleEvent-content-top-half-right">
                         <div className="singleEvent-content-top-half-right-top" onClick={eventGroupClciker}>
-                            <div><img className="singleEvent-detail-group-img" src={prevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" /></div>
+                            <div><img className="singleEvent-detail-group-img" src={groupPrevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" /></div>
                             <div>
                                 <div>{group.name}</div>
                                 <div>{group.private ? "Private" : "Public"}</div>

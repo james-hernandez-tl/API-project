@@ -35,13 +35,13 @@ function Navigation({ isLoaded }) {
   return (
     <div className="navigation">
       <div>
-        <NavLink exact to="/">
+        <NavLink exact={true} to="/">
           Meetup
         </NavLink>
 
       </div>
       <div className="navigation-right">
-        {sessionUser && <Link className="startGroup">Start a new group</Link>}
+        {sessionUser && <NavLink to="/groups/new" className="startGroup">Start a new group</NavLink>}
         {isLoaded && sessionLinks}
       </div>
 
