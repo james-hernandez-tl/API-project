@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import { createGroupThunk } from "../../store/allGroups"
 import { useDispatch } from "react-redux"
 
-export default function GroupFormInput(){
+export default function GroupFormInput({formType, currentGroup}){
     const [cityState, setCityState] = useState("")
     const [groupName,setGroupName] = useState("")
     const [description,setDescription] = useState("")
@@ -76,6 +76,16 @@ export default function GroupFormInput(){
       setErrors(newErrors)
    },[cityState,groupName,description,type,privateOrPublic,imageUrl])
 
+   useEffect(()=>{
+      if (formType === "Update"){
+          setCityState(`${currentGroup.city},${currentGroup.state}`)
+          setGroupName(currentGroup.name)
+          setDescription(currentGroup.about)
+          setPrivateOrPublic(currentGroup.private?"Private":"Public")
+          setType(currentGroup.type)
+      }
+   },[])
+
     return (
          <form onSubmit={submition} >
              <div>
@@ -115,11 +125,11 @@ export default function GroupFormInput(){
                     <option value="Public">Public</option>
                  </select>
                  <div className="groupErrors">{triedSubmit && errors.private}</div>
-                 <div>Please add an image url for your group below:</div>
-                 <input type="text" value={imageUrl} onChange={imageUrlChanger} placeholder="Image Url"/>
-                 <div className="groupErrors">{triedSubmit && errors.image}</div>
+                 {formType === "Create" && <div>Please add an image url for your group below:</div>}
+                 {formType === "Create" && <input type="text" value={imageUrl} onChange={imageUrlChanger} placeholder="Image Url"/>}
+                 {formType === "Create" && <div className="groupErrors">{triedSubmit && errors.image}</div>}
                  <hr />
-                 <button>Create group</button>
+                 <button>{formType} group</button>
              </div>
          </form>
     )

@@ -7,7 +7,7 @@ export default function CreateGroupForm(){
             <div className="idk">BECOME AN ORGANIZER</div>
             <div>We'll walk you through a few steps to build your local community</div>
             <hr />
-            <GroupFormInput />
+            <GroupFormInput formType={"Create"}/>
         </div>
     )
 }
