@@ -11,13 +11,13 @@ export default function SingelGroup(){
     const dispatch = useDispatch()
     const {groupId} = useParams()
     const group = useSelector( state => state.Groups.singleGroup)
-    // console.log("gropu",group)
     const user = useSelector(state => state.session.user)
 
-    const singelGroupClicker = (e) => {
-         e.preventDefault()
 
-         alert("Feature Coming Soon...")
+    const singelGroupClicker = (e) => {
+        e.preventDefault()
+
+        alert("Feature Coming Soon...")
     }
 
     useEffect(()=>{
@@ -26,13 +26,15 @@ export default function SingelGroup(){
 
     if (!Object.keys(group).length) return null
 
+    let prevImg = group.GroupImages.find(imageObj => imageObj.preview)
+    prevImg = prevImg? prevImg.url :undefined
     return (
         <>
         <div className="singleGroup-top-half">
              <Link exact={"true"} to="/groups">Groups</Link>
              <div className="singleGroup-top-half-main" >
                 <div className="singleGroup-top-half-left">
-                    longer img
+                    <img className="singleGroup-top-half-left-img" src={prevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" />
                 </div>
                 <div className="singleGroup-top-half-right">
                     <h2>{group.name}</h2>

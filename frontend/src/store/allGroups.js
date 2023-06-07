@@ -69,7 +69,7 @@ export const createGroupThunk = (group) => async (dispatch) => {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
-            name:group.id,
+            name:group.name,
             about:group.about,
             type:group.type,
             private:group.private,
@@ -87,6 +87,12 @@ export const createGroupThunk = (group) => async (dispatch) => {
 
     const image = await dispatch(addGroupImageThunk(obj))
 
+    dispatch(createGroupAction({...newGroup,previewImage:image.url,numMembers:0}))
+
+    // let group2 = await csrfFetch(`/api/groups/${newGroup.id}`)
+    // group2 = await group2.json()
+    // dispatch(setGroupAction(group2))
+
     return newGroup
 
 }
@@ -100,6 +106,10 @@ export const addGroupImageThunk = (obj) => async (dispatch) => {
             preview:true
         })
     })
+
+    image = image.json()
+
+    return image
 }
 
 

@@ -43,24 +43,23 @@ export default function GroupFormInput(){
 
    const submition = async (e) => {
       setTriedSubmit(true)
+      e.preventDefault()
       if (Object.keys(errors).length){
-        e.preventDefault()
         return
       }
+      let newGroup = {
+        name:groupName,
+        about:description,
+        type:type,
+        private:privateOrPublic === "Private",
+        city:cityState.split(",")[0],
+        state:cityState.split(",")[1],
+        url:imageUrl
+      }
 
-      // let newGroup = {
-      //   name:groupName,
-      //   about:description,
-      //   type:type,
-      //   private:privateOrPublic === "Private",
-      //   city:cityState.split(",")[0],
-      //   state:cityState.split(",")[1],
-      //   url:imageUrl
-      // }
+      let finalGroup = await dispatch(createGroupThunk(newGroup))
 
-      // let finalGroup = await dispatch(createGroupThunk(newGroup))
-
-      // history.push(`groups/${finalGroup.id}`)
+      history.push(`/groups/${finalGroup.id}`)
 
    }
 
@@ -71,6 +70,8 @@ export default function GroupFormInput(){
       if (!groupName.length) newErrors.groupName = "Name is required"
       if (description.length < 50) newErrors.description = "Description must be at least 50 characters long"
       if (!imageUrl.endsWith(".png") && !imageUrl.endsWith(".jpg") && !imageUrl.endsWith(".jpeg")) newErrors.image = "Image URL must end in .png, .jpg, or .jpeg "
+      if (type !== "Online" && type !== "In person") newErrors.type = "Group Type is required"
+      if (privateOrPublic !== "Private" && privateOrPublic !== "Public") newErrors.private = 'Visibility Type is required'
 
       setErrors(newErrors)
    },[cityState,groupName,description,type,privateOrPublic,imageUrl])
@@ -102,14 +103,18 @@ export default function GroupFormInput(){
                  <h2>Final step...</h2>
                  <div>Is this an in person or online group?</div>
                  <select value={type} onChange={typeChanger} id="">
+                    <option value="" disabled >( select one )</option>
                     <option value="In person">In Person</option>
                     <option value="Online">Online</option>
                  </select>
+                 <div className="groupErrors">{triedSubmit && errors.type}</div>
                  <div>Is this group private or public?</div>
                  <select value={privateOrPublic} onChange={privateChanger}>
+                    <option value="" disabled >( select one )</option>
                     <option value="Private">Private</option>
                     <option value="Public">Public</option>
                  </select>
+                 <div className="groupErrors">{triedSubmit && errors.private}</div>
                  <div>Please add an image url for your group below:</div>
                  <input type="text" value={imageUrl} onChange={imageUrlChanger} placeholder="Image Url"/>
                  <div className="groupErrors">{triedSubmit && errors.image}</div>

@@ -161,6 +161,8 @@ router.get('/current', async (req,res)=>{
 
     if (user){
         const {name , about , type, private, city, state } = req.body
+        console.log("insdie of data base",name,about,type,private,city,state)
+
         let errorResult = {message:"Bad Request", errors:{}}
 
         if (name.length > 60) errorResult.errors.name = "Name must be 60 characters or less"
@@ -174,7 +176,7 @@ router.get('/current', async (req,res)=>{
           res.status(400)
           return res.json(errorResult)
         }
-
+        console.log("passed errors")
         let newGroup = {
             organizerId: req.user.id,
             name,
