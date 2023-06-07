@@ -22,3 +22,11 @@
 .singleEvent-button-holder {
     display: flex;
 }
+
+.singleEvent-deatail-img {
+    width: 200px;
+}
+
+.singleEvent-detail-group-img {
+    width: 100px;
+}

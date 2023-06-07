@@ -11,3 +11,7 @@
    border-top: solid black 2px;
    cursor: pointer;
 }
+
+.EventLayout-img-real {
+    width: 300px;
+}

@@ -12,17 +12,17 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         groupId:1,
-        url:'randomURl',
+        url:'https://i.imgur.com/x0G1BKy.jpeg',
         preview:false
       },
       {
         groupId:1,
-        url:'randomURl',
+        url:'https://i.imgur.com/Zgvte50.jpeg',
         preview:false
       },
       {
         groupId:1,
-        url:'randomURl',
+        url:'https://i.imgur.com/aVAResf.jpeg',
         preview:true
       }
     ], {});

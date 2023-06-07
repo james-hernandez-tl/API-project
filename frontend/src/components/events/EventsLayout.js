@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 export default function EventsLayout({event,where}){
     const time= event.startDate.split("T")
     const history = useHistory()
+    let prevImg = event.previewImage
 
     const eventLayoutClicker = () => {
         history.push(`/events/${event.id}`)
@@ -12,7 +13,7 @@ export default function EventsLayout({event,where}){
     return (
        <div className={where} onClick={eventLayoutClicker}>
           <div className="EventsLayout-top-half">
-              <div className="EventLayout-img">mid img</div>
+              <div className="EventLayout-img"><img className="EventLayout-img-real" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
               <div>
                 <div>{time[0]}{" · "}{time[1]}</div>
                 <div>{event.name}</div>

@@ -2,7 +2,7 @@ import "./GroupLayout.css"
 import { useHistory } from "react-router-dom"
 
 export default function GroupLayout({group}){
-
+    let prevImg = group.previewImage
     const history=useHistory()
 
     const groupClicker = () => {
@@ -11,7 +11,7 @@ export default function GroupLayout({group}){
      return (
         <div onClick={groupClicker} className="group-layout">
             {/* <hr /> */}
-            <div className="group-layout-img">medium img</div>
+            <div className="group-layout-img"><img className="group-layout-img-real" src={prevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" /></div>
             <div className="group-layout-text">
                 <h2 className="group-layout-text-title">
                       {group.name}

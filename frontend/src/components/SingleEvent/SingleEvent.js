@@ -18,6 +18,9 @@ export default function SingleEvent() {
         history.push(`/groups/${group.id}`)
     }
 
+    let prevImg = event.previewImage
+    let groupPrevImg = group.previewImage
+
     useEffect(() => {
         dispatch(setEventThunk(eventId))
     }, [eventId])
@@ -38,10 +41,10 @@ export default function SingleEvent() {
             </div>
             <div className="singleEvent-content">
                 <div className="singleEvent-content-top-half">
-                    <div>medium img</div>
+                    <div><img className="singleEvent-deatail-img" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
                     <div className="singleEvent-content-top-half-right">
                         <div className="singleEvent-content-top-half-right-top" onClick={eventGroupClciker}>
-                            <div>s img</div>
+                            <div><img className="singleEvent-detail-group-img" src={prevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" /></div>
                             <div>
                                 <div>{group.name}</div>
                                 <div>{group.private ? "Private" : "Public"}</div>

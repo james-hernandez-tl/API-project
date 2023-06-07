@@ -6,3 +6,16 @@
     color: orange;
     text-decoration: none;
 }
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation-right{
+    display: flex;
+}
+
+.startGroup {
+    text-decoration: none;
+}

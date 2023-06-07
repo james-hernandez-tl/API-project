@@ -12,22 +12,22 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         eventId:1,
-        url:'randomurl',
+        url:'https://i.imgur.com/rF9bvAW.jpeg',
         preview:false
       },
       {
         eventId:2,
-        url:'randomurl',
+        url:'https://i.imgur.com/rF9bvAW.jpeg',
         preview:true
       },
       {
         eventId:3,
-        url:'randomurl',
+        url:'https://i.imgur.com/ERXYenJ.jpeg',
         preview:false
       },
       {
         eventId:4,
-        url:'randomurl',
+        url:'https://i.imgur.com/ERXYenJ.jpeg',
         preview:false
       },
     ], {});
