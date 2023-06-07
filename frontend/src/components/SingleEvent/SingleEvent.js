@@ -19,6 +19,10 @@ export default function SingleEvent() {
     }
 
     let prevImg = event.previewImage
+    if (event.EventImages){
+        prevImg = event.EventImages.find(img => img.preview)
+        prevImg = prevImg?prevImg.url:undefined
+    }
     let groupPrevImg = group.previewImage
 
     useEffect(() => {
