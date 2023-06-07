@@ -31,6 +31,11 @@ export default function SingleEvent() {
 
     // useEffect()
 
+    if (event.EventImages){
+        prevImg = event.EventImages.find(img => img.preview)
+        prevImg = prevImg? prevImg.url : undefined
+    }
+
     if (!Object.values(event).length || !group.Organizer) return null
     return (
         <div className="singleEvent-main">

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams,useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect,useState } from "react"
 import { setGroupThunk } from "../../store/allGroups"
@@ -8,6 +8,7 @@ import Events from "../events/Events"
 
 
 export default function SingelGroup(){
+    const history = useHistory()
     const dispatch = useDispatch()
     const {groupId} = useParams()
     const group = useSelector( state => state.Groups.singleGroup)
@@ -18,6 +19,10 @@ export default function SingelGroup(){
         e.preventDefault()
 
         alert("Feature Coming Soon...")
+    }
+
+    const createEventClicker = (e) => {
+       history.push(`/groups/${group.id}/events/new`)
     }
 
     useEffect(()=>{
@@ -42,7 +47,7 @@ export default function SingelGroup(){
                     <div>{group.numMembers} Members · {group.private?"Private":"Public"}</div>
                     <div>Organized by {" "+group.Organizer.firstName+" "} {group.Organizer.lastName}</div>
                     {user && user.id !== group.organizerId && <button onClick={singelGroupClicker} className="singleGroup-button">Join this group</button>}
-                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button>Create Event</button> <button>Update</button> <button>Delete</button>  </div>}
+                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button>Update</button> <button>Delete</button>  </div>}
                 </div>
              </div>
         </div>
