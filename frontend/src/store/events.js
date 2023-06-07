@@ -60,6 +60,43 @@ export const setEventThunk = (eventId) => async (dispatch) => {
     dispatch(setEventAction(event))
 }
 
+export const createEventThunk = (event) => async (dispatch) => {
+    let newEvent = await csrfFetch(`/api/groups/${event.groupId}/events`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            "venueId": 1,
+            "name": event.name,
+            "type": event.type,
+            "capacity": 10,
+            "price": Number(event.price).toFixed(2),
+            "description": event.description,
+            "startDate": event.startDate,
+            "endDate": event.endDate,
+          })
+    })
+
+    //https://i.imgur.com/x0G1BKy.jpeg
+    //12/25/2025 05:30 PM
+
+    newEvent = await newEvent.json()
+    console.log("newEvent",newEvent)
+
+    let image = await csrfFetch(`/api/events/${newEvent.id}/images`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            url:event.url,
+            preview:true
+        })
+    })
+    console.log("new iamge",image)
+    dispatch(setEveryEventsThunk())
+
+    return newEvent
+
+}
+
 
 // reducer
 

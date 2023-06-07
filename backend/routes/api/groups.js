@@ -543,6 +543,7 @@ router.get('/current', async (req,res)=>{
   })
 
   router.post('/:groupId/events',requireAuth, async (req,res)=>{
+    console.log("inside backend")
     const group = await Group.findOne({
       where:{
         id:req.params.groupId
@@ -576,6 +577,8 @@ router.get('/current', async (req,res)=>{
     }
 
     const {venueId, name, type, capacity, price, description, startDate, endDate} = req.body
+
+    console.log(venueId, name, type, capacity, price, description, startDate, endDate)
 
     let errorResult = {message: "Bad Request",errors: {}}
 
