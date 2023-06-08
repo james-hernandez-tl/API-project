@@ -52,6 +52,29 @@ const updateGroupAction = (group) => {
 
 // thunk
 
+export const updateGroupThunk = (group) => async (dispatch) => {
+    console.log(group.private)
+   let updatedGroup = await csrfFetch(`/api/groups/${group.groupId}`,{
+       method:"PUT",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({
+            name:group.name,
+            about:group.about,
+            type:group.type,
+            private:group.private,
+            city:group.city,
+            state:group.state
+       })
+   })
+
+   updatedGroup = await updatedGroup.json()
+   console.log(updatedGroup)
+
+   dispatch(updateGroupAction(updatedGroup))
+
+   return updatedGroup
+}
+
 export const setAllGroupsThunk = () => async (dispatch) => {
     let allGroups = await csrfFetch("/api/groups")
     allGroups = await allGroups.json()

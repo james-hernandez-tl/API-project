@@ -25,6 +25,10 @@ export default function SingelGroup(){
        history.push(`/groups/${group.id}/events/new`)
     }
 
+    const updateGroupClicker = (e) => {
+        history.push(`/groups/${group.id}/edit`)
+    }
+
     useEffect(()=>{
         dispatch(setGroupThunk(groupId))
     },[groupId])
@@ -47,7 +51,7 @@ export default function SingelGroup(){
                     <div>{group.numMembers} Members · {group.private?"Private":"Public"}</div>
                     <div>Organized by {" "+group.Organizer.firstName+" "} {group.Organizer.lastName}</div>
                     {user && user.id !== group.organizerId && <button onClick={singelGroupClicker} className="singleGroup-button">Join this group</button>}
-                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button>Update</button> <button>Delete</button>  </div>}
+                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button onClick={updateGroupClicker}>Update</button> <button>Delete</button>  </div>}
                 </div>
              </div>
         </div>

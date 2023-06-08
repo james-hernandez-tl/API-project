@@ -7,7 +7,6 @@ export default function AllGroups(){
     const dispatch = useDispatch()
     let allGroups = useSelector((state) => state.Groups.allGroups)
     allGroups = Object.values(allGroups)
-    // console.log(allGroups)ß
 
     return (
         <div className="allGroups-main">

@@ -78,7 +78,6 @@ export default function CreateEventForm() {
 
      const submitform = async (e) => {
         e.preventDefault()
-        console.log(errors)
         if (Object.values(errors).length) {
             setSubmited(true)
             return

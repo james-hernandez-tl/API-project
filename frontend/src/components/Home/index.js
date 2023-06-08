@@ -8,7 +8,6 @@ export default function Home() {
     const [disableStart,setDisableStart] = useState(true)
 
     useEffect(()=>{
-        // console.log(user)
        if (user) setDisableStart(false)
        else setDisableStart (true)
     },[user])

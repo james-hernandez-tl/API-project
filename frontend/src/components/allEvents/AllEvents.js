@@ -20,7 +20,6 @@ export default function AllEvents(){
         return false
     })
 
-    console.log(allEvents)
 
     useEffect(()=>{
         dispatch(setEveryEventsThunk())

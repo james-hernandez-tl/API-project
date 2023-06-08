@@ -18,14 +18,11 @@ export default function Events({group}){
     const sortingEvents = (a,b) =>{
         let date1 = new Date(a.startDate)
         let date2 = new Date(b.startDate)
-        // console.log(date1,date2)
-        // console.log(date1 > date2)
         return date1 < date2
      }
 
     let allEvents = Object.values(allEventsState)
     allEvents = allEvents.sort(sortingEvents)
-    // console.log("allevents",allEvents)
 
     allEvents.forEach(event => {
         let currentDate = new Date()

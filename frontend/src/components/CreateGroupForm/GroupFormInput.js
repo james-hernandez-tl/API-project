@@ -3,6 +3,7 @@ import "./GroupFormInput.css"
 import { useHistory } from "react-router-dom"
 import { createGroupThunk } from "../../store/allGroups"
 import { useDispatch } from "react-redux"
+import { updateGroupThunk } from "../../store/allGroups"
 
 export default function GroupFormInput({formType, currentGroup}){
     const [cityState, setCityState] = useState("")
@@ -54,10 +55,15 @@ export default function GroupFormInput({formType, currentGroup}){
         private:privateOrPublic === "Private",
         city:cityState.split(",")[0],
         state:cityState.split(",")[1],
-        url:imageUrl
+        url:imageUrl,
+        groupId: currentGroup? currentGroup.id:undefined,
       }
-
-      let finalGroup = await dispatch(createGroupThunk(newGroup))
+      let finalGroup
+      if (formType === "Create"){
+         finalGroup = await dispatch(createGroupThunk(newGroup))
+      }else {
+         finalGroup = await dispatch(updateGroupThunk(newGroup))
+      }
 
       history.push(`/groups/${finalGroup.id}`)
 
@@ -83,6 +89,7 @@ export default function GroupFormInput({formType, currentGroup}){
           setDescription(currentGroup.about)
           setPrivateOrPublic(currentGroup.private?"Private":"Public")
           setType(currentGroup.type)
+          setImageUrl(currentGroup.previewImage??"https://i.imgur.com/2EGj2Rk.jpeg")
       }
    },[])
 
