@@ -103,8 +103,8 @@ export default function CreateEventForm() {
 
 
     return (
-        <form onSubmit={submitform}>
-            <h2>Create an event for {}</h2>
+        <form className="createEventForm-main" onSubmit={submitform}>
+            <h2>Create an event for {group.name}</h2>
             <div>What is the name of your event?</div>
             <input type="text" placeholder="event name" value={eventName} onChange={EventNameChanger}></input>
             <div className="createEvent-erros">{submited && errors.name}</div>
@@ -126,8 +126,8 @@ export default function CreateEventForm() {
             <div className="createEvent-erros">{submited && errors.private}</div>
 
             <div>What is the price for your event?</div>
-            <div>
-                <div><i className="fa-solid fa-dollar-sign"></i></div>
+            <div className="createEventForm-input-with-icon-holder-dollar">
+                <div className="createEventForm-dollar-icon-holder"><i className="fa-solid fa-dollar-sign"></i></div>
                 <input placeholder="0" type="number" value={price} onChange={priceChanger} />
             </div>
             <div className="createEvent-erros">{submited && errors.price}</div>
@@ -135,14 +135,14 @@ export default function CreateEventForm() {
             <hr />
 
             <div>When does your event start?</div>
-            <div>
+            <div className="createEventForm-input-with-icon-holder">
                 <input placeholder="MM/DD/YYYY HH:mm AM" type="text" value={eventStart} onChange={startChanger}/>
                 <div><i className="fa-regular fa-calendar-days"></i></div>
             </div>
             <div className="createEvent-erros">{submited && errors.start}</div>
 
             <div>When does your event end?</div>
-            <div>
+            <div className="createEventForm-input-with-icon-holder">
                 <input placeholder="MM/DD/YYYY HH:mm AM" type="text" value={eventEnd} onChange={endChanger}/>
                 <div><i className="fa-regular fa-calendar-days"></i></div>
             </div>
@@ -160,7 +160,7 @@ export default function CreateEventForm() {
             <textarea placeholder="Please include at least 50 characters" value={describe} onChange={describeChanger} cols="30" rows="10"></textarea>
             <div className="createEvent-erros">{submited && errors.describe}</div>
 
-            <button type="submit">Create Event</button>
+            <button className="CreateEvent-submit-button" type="submit">Create Event</button>
         </form>
     )
 }

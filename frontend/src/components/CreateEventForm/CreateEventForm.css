@@ -1,3 +1,62 @@
 .createEvent-erros {
    color: red;
 }
+
+.createEventForm-main > input {
+   background-color: rgb(213, 231, 237);
+   border: solid 2px black;
+}
+
+.createEventForm-main > textarea {
+   background-color: rgb(213, 231, 237);
+   border: solid 2px black;
+}
+
+.createEventForm-main > select {
+   background-color: rgb(213, 231, 237);
+   border: solid 2px black;
+}
+
+.createEventForm-input-with-icon-holder > input {
+   background-color: rgb(213, 231, 237);
+   border: solid 2px black;
+}
+
+.createEventForm-input-with-icon-holder {
+   display: flex;
+   gap: 10px;
+}
+
+.createEventForm-input-with-icon-holder-dollar {
+   display: flex;
+}
+
+.createEventForm-dollar-icon-holder {
+   border-top: solid 2px black;
+   border-left: solid 2px black;
+   border-bottom: solid 2px black;
+   background-color: rgb(213, 231, 237);
+   padding-right: 10px;
+   padding-left: 10px;
+}
+
+.createEventForm-main {
+   width: 50%;
+   margin: auto;
+}
+
+.createEventForm-input-with-icon-holder-dollar > input {
+   background-color: rgb(213, 231, 237);
+   border: none;
+   border-top: solid 2px black;
+   border-right: solid 2px black;
+   border-bottom: solid 2px black;
+}
+
+.CreateEvent-submit-button {
+   background-color: red;
+    color: white;
+    font-size: 15px;
+    padding: 10px 15px;
+    margin-bottom: 50px;
+}

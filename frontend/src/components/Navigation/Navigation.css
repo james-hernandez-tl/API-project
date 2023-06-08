@@ -9,6 +9,14 @@
     padding: 10px;
 }
 
+.startGroup {
+    font-size: 15px;
+}
+
+.startGroup.active {
+    font-size: 15px;
+}
+
 .navigation-logo {
     color: orange;
     text-decoration: none;

@@ -95,7 +95,7 @@ export default function GroupFormInput({formType, currentGroup}){
 
     return (
          <form onSubmit={submition} >
-             <div>
+             <div className="create-form-main">
                  <h2>First, set your group's location.</h2>
                  <div>Meetup groups meet locally, in person and online. We'll connect you with people in your area, and more can join you online</div>
                  <input type="text" value={cityState} onChange={cityChanger} placeholder="City, STATE"/>
@@ -113,7 +113,7 @@ export default function GroupFormInput({formType, currentGroup}){
                     <li>Who should join?</li>
                     <li>What will you do at your events?</li>
                  </ol>
-                 <textarea type="text" value={description} onChange={descriptionChanger} placeholder="Please write at least 50 characters"/>
+                 <textarea  cols="30" rows="10" type="text" value={description} onChange={descriptionChanger} placeholder="Please write at least 50 characters"/>
                  <div className="groupErrors">{triedSubmit && errors.description}</div>
                  <hr />
 
@@ -136,7 +136,7 @@ export default function GroupFormInput({formType, currentGroup}){
                  {formType === "Create" && <input type="text" value={imageUrl} onChange={imageUrlChanger} placeholder="Image Url"/>}
                  {formType === "Create" && <div className="groupErrors">{triedSubmit && errors.image}</div>}
                  <hr />
-                 <button>{formType} group</button>
+                 <button className="submiting-create-group-button">{formType} group</button>
              </div>
          </form>
     )

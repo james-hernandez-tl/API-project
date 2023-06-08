@@ -79,7 +79,7 @@ export default function SingleEvent() {
                             </div>
                             <div>
                                 <div className="singleEvent-content-top-half-right-bottom-Icon-holders"><i className="fa-solid fa-location-dot"></i></div>
-                                <div className="singleEvent-button-holder"><div>{event.type}</div> <div>{user && user.id === group.organizerId && <button className="singleEvent-button">Update</button>}</div><div>{user && user.id === group.organizerId && <OpenModalButton buttonText="Delete" modalComponent={<DeleteEvent groupId={group.id} eventId={eventId} />}  />  }</div> </div>
+                                <div className="singleEvent-button-holder"><div>{event.type}</div> <div>{user && user.id === group.organizerId && <button className="singleEvent-button">Update</button>}</div><div className="singleEvent-delete-pop-up-modal">{user && user.id === group.organizerId && <OpenModalButton buttonText="Delete" modalComponent={<DeleteEvent groupId={group.id} eventId={eventId} />}  />  }</div> </div>
                             </div>
                         </div>
                     </div>

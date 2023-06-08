@@ -88,3 +88,9 @@
 .singleEvent-button {
     margin-left: 50px;
 }
+
+.singleEvent-delete-pop-up-modal > button {
+    background-color: darkgray;
+    color: white;
+    margin-left: 10px;
+}

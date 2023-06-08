@@ -1,0 +1,27 @@
+.delete-Group-main {
+    text-align: center;
+}
+
+.delete-Group-main > h3 {
+    text-align: center;
+    margin: 0 5px;
+    font-size: 23px;
+}
+
+.delete-Group-main > button {
+   width: 90%;
+   border: 2px solid black;
+   padding: 10px 15px;
+   margin-bottom: 10px;
+   box-shadow: 2px 2px 2px black;
+
+}
+
+#modal {
+    border-radius: 25px;
+}
+
+.DeleteGroup-delete-button {
+    background-color: red;
+    color: white;
+}

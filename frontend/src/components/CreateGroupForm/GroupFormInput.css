@@ -1,3 +1,27 @@
 .groupErrors {
     color: red;
 }
+
+
+.create-form-main > input {
+    background-color: rgb(213, 231, 237);
+    border: solid 2px black;
+}
+
+.create-form-main > textarea {
+    background-color: rgb(213, 231, 237);
+    border: solid 2px black;
+}
+
+.create-form-main > select {
+    border: solid 2px black;
+    background-color: rgb(213, 231, 237);
+}
+
+.submiting-create-group-button {
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    padding: 10px 15px;
+    margin-bottom: 50px;
+}
