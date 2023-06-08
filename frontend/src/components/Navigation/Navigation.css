@@ -2,20 +2,47 @@
     display: none;
 }
 
-.logo {
+.navigation-logo.active {
     color: orange;
     text-decoration: none;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.navigation-logo {
+    color: orange;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 10px;
 }
 
 .navigation {
     display: flex;
     justify-content: space-between;
+    align-content: center;
 }
 
 .navigation-right{
     display: flex;
+    align-content: center;
+}
+
+.navigation-button-holder > button {
+   border: none;
+   background: white;
+}
+
+.navigation-button-holder{
+    display: flex;
+    align-content: center;
 }
 
 .startGroup {
     text-decoration: none;
+    padding: 10px;
+}
+
+.profile-button {
+    font-size: 20px;
+    margin: 5px;
 }
