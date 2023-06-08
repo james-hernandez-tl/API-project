@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setEventThunk } from "../../store/events"
 import { setGroupThunk } from "../../store/allGroups"
+import DeleteEvent from "../DeleteEvent/DeleteEvent"
+import OpenModalButton from "../OpenModalButton"
 import { Link } from "react-router-dom"
 import "./SingleEvent.css"
 
@@ -73,7 +75,7 @@ export default function SingleEvent() {
                             </div>
                             <div>
                                 <div><i className="fa-solid fa-location-dot"></i></div>
-                                <div className="singleEvent-button-holder"><div>{event.type}</div> <div>{user && user.id === group.organizerId && <button className="singleEvent-button">Update</button>}</div><div>{user && user.id === group.organizerId && <button className="singleEvent-button">Delete</button>}</div> </div>
+                                <div className="singleEvent-button-holder"><div>{event.type}</div> <div>{user && user.id === group.organizerId && <button className="singleEvent-button">Update</button>}</div><div>{user && user.id === group.organizerId && <OpenModalButton buttonText="Delete" modalComponent={<DeleteEvent groupId={group.id} eventId={eventId} />}  />  }</div> </div>
                             </div>
                         </div>
                     </div>

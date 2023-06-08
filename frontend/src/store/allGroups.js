@@ -52,8 +52,14 @@ const updateGroupAction = (group) => {
 
 // thunk
 
+export const removeGroupThunk = (groupId) => async (dispatch) => {
+   await csrfFetch(`/api/groups/${groupId}`,{
+    method:"DELETE"
+   })
+   await dispatch(removeGroupAction(groupId))
+}
+
 export const updateGroupThunk = (group) => async (dispatch) => {
-    console.log(group.private)
    let updatedGroup = await csrfFetch(`/api/groups/${group.groupId}`,{
        method:"PUT",
        headers:{"Content-Type":"application/json"},
@@ -68,7 +74,6 @@ export const updateGroupThunk = (group) => async (dispatch) => {
    })
 
    updatedGroup = await updatedGroup.json()
-   console.log(updatedGroup)
 
    dispatch(updateGroupAction(updatedGroup))
 
@@ -193,6 +198,7 @@ const allGroupsReducer = (state = initalState,action) => {
         }
         case REMOVEGROUP:{
             delete newState.allGroups[action.groupId]
+            newState.singleGroup = {}
             return newState
         }
         case UPDATEGROUP:{

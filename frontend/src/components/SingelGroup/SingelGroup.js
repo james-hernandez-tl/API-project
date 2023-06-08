@@ -5,6 +5,8 @@ import { setGroupThunk } from "../../store/allGroups"
 import { Link } from "react-router-dom"
 import "./singelGroup.css"
 import Events from "../events/Events"
+import OpenModalButton from "../OpenModalButton"
+import DeleteGroup from "../DeleteGroup/DeleteGroup"
 
 
 export default function SingelGroup(){
@@ -51,7 +53,7 @@ export default function SingelGroup(){
                     <div>{group.numMembers} Members · {group.private?"Private":"Public"}</div>
                     <div>Organized by {" "+group.Organizer.firstName+" "} {group.Organizer.lastName}</div>
                     {user && user.id !== group.organizerId && <button onClick={singelGroupClicker} className="singleGroup-button">Join this group</button>}
-                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button onClick={updateGroupClicker}>Update</button> <button>Delete</button>  </div>}
+                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button onClick={updateGroupClicker}>Update</button> <OpenModalButton buttonText="Delete" modalComponent={<DeleteGroup groupId={groupId} />}  />  </div>}
                 </div>
              </div>
         </div>

@@ -42,6 +42,14 @@ const removeEventAction = (eventId) => {
 }
 
 // thunk
+
+export const removeEventThunk = (eventId) => async (dispatch) => {
+    await csrfFetch(`/api/events/${eventId}`,{
+     method:"DELETE"
+    })
+    await dispatch(removeEventAction(eventId))
+ }
+
 export const setEveryEventsThunk = () => async (dispatch) => {
     let allEvents = await csrfFetch(`/api/events`)
     allEvents = await allEvents.json()
@@ -80,7 +88,6 @@ export const createEventThunk = (event) => async (dispatch) => {
     //12/25/2025 05:30 PM
 
     newEvent = await newEvent.json()
-    console.log("newEvent",newEvent)
 
     let image = await csrfFetch(`/api/events/${newEvent.id}/images`,{
         method:"POST",
@@ -90,7 +97,6 @@ export const createEventThunk = (event) => async (dispatch) => {
             preview:true
         })
     })
-    console.log("new iamge",image)
     dispatch(setEveryEventsThunk())
 
     return newEvent
@@ -167,6 +173,7 @@ const allEventsReducer = (state = initalState,action) => {
         }
         case REMOVEEVENT:{
             delete newState.allEvents[action.eventId]
+            newState.singleEvent = {}
             return newState
         }
         default:{
