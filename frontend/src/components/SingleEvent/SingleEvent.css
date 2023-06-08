@@ -1,9 +1,15 @@
 .singleEvent-content {
     background-color: gray;
+    padding: 30px 150px;
+
 }
 
 .singleEvent-content-top-half {
     display: flex;
+}
+
+.SingleEvent-content-main-img-holder {
+    background-color: gray;
 }
 
 .singleEvent-content-top-half-right-top {
@@ -12,6 +18,7 @@
 
 .singleEvent-content-top-half-right-bottom > div {
     display: flex;
+    margin: 10px 0 ;
 }
 
 .singleEvent-button {
@@ -24,9 +31,60 @@
 }
 
 .singleEvent-deatail-img {
-    width: 200px;
+    width: 600px;
+    height: 350px;
 }
 
 .singleEvent-detail-group-img {
     width: 100px;
+}
+
+.singleEvent-header-organizer {
+    margin-bottom: 10px;
+}
+
+.singleEvent-content-top-half-right-top {
+    background-color: white;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 20px 30px;
+    font-size: 20px;
+}
+
+.singleEvent-content-top-half-right-bottom-Icon-holders {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-right: 15px;
+}
+
+
+.singleEvent-content-top-half-right-bottom {
+    background-color: white;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 20px 30px;
+    font-size: 20px;
+}
+
+.singleEvent-content-top-half-right-bottom > div {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.singleEvent-content-top-half-right-top > div {
+   margin-right:10px ;
+}
+
+.singleEvent-header {
+    padding: 0 150px;
+}
+
+.singleEvent-button {
+    margin-left: 50px;
 }

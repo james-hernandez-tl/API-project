@@ -6,4 +6,25 @@
 
 .group-layout-img-real {
     width: 300px;
+    height: 250px;
+    padding-right: 15px;
+}
+
+.group-layout {
+    padding: 15px 0;
+
+}
+
+.group-layout-text {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+}
+
+.group-layout-text-numMembers {
+    margin-top: 50px;
+}
+
+.group-layout-location {
+    margin: 0 0 15px 0;
 }

@@ -1,3 +1,11 @@
 .events-main {
     background-color: lightgray;
 }
+
+.events-content > h2 {
+
+}
+
+.events-main {
+    padding: 20px 40px;
+}

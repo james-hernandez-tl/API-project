@@ -2,9 +2,13 @@
     color: teal;
     /* text-decoration: none; */
     pointer-events: none;
+    font-size: 30px;
+    padding-right: 20px;
 }
 
 .inActive {
     color: gray;
     text-decoration: none;
+    font-size: 30px;
+    padding-right: 20px;
 }

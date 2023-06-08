@@ -15,3 +15,47 @@
 .singleGroup-top-half-left-img {
     width: 200px;
 }
+
+.singleGroup-top-half-left-img {
+    width: 600px;
+    height: 400px;
+}
+
+.singleGroup-top-half {
+    width: 80%;
+    margin: auto;
+}
+
+.singleGroup-breadCrumb {
+    margin-bottom: 10px;
+}
+.singleGroup-breadCrumb > a {
+ margin-left: 10px;
+ margin-bottom: 10px;
+}
+
+.singleGroup-top-half-right {
+    width: 400px ;
+    margin-left: 20px;
+    height: 400px;
+}
+
+
+.singleGroup-top-half-right > div {
+    padding: 5px 0;
+}
+
+.singleGroup-top-half-right-button-holder {
+    margin-top: 150px;
+}
+
+.singleGroup-join-group-button {
+    background-color:darkred;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+
+.singleGroup-main {
+    margin: 0;
+}

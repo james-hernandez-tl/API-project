@@ -1,6 +1,8 @@
 .EventsLayout {
-    border: solid black 3px;
     cursor: pointer;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 .EventsLayout-top-half {
@@ -13,5 +15,18 @@
 }
 
 .EventLayout-img-real {
-    width: 300px;
+    width: 250px;
+    height: 150px;
+}
+
+.eventLayout-main {
+    padding: 10px;
+}
+
+.EventsLayout-top-half-text {
+    margin-left: 10px;
+}
+
+.EventsLayout-bottom-half {
+    margin-top: 10px;
 }

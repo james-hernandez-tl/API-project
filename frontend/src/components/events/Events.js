@@ -1,7 +1,7 @@
 import "./Events.css"
 import { setAllEventsThunk } from "../../store/events"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import EventsLayout from "./EventsLayout"
 
 
@@ -13,12 +13,12 @@ export default function Events({group}){
 
     useEffect(()=> {
         dispatch(setAllEventsThunk(group.id))
-    },[group])
+    },[group,dispatch])
 
     const sortingEvents = (a,b) =>{
         let date1 = new Date(a.startDate)
         let date2 = new Date(b.startDate)
-        return date1 < date2
+        return date1 - date2
      }
 
     let allEvents = Object.values(allEventsState)
@@ -39,6 +39,7 @@ export default function Events({group}){
                <h3>What were about</h3>
                <p>{group.about}</p>
             </div>
+            {upCommingEvents.length === 0 && pastEvents.length === 0 && <h2>No Events</h2>}
             {upCommingEvents.length > 0 && <h2>Upcoming Events ({upCommingEvents.length})</h2>}
             {upCommingEvents.length > 0 && upCommingEvents.map(event=> (
                 <EventsLayout event={event} key={event.id} where={"EventsLayout"}/>

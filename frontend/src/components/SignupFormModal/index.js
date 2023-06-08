@@ -22,7 +22,7 @@ function SignupFormModal() {
     if (!email.length || username.length < 4 || !firstName.length || !lastName.length || password.length < 6 || !confirmPassword.length) disableButton = true
 
     setDisabled(disableButton)
-  })
+  },[email,username,firstName,lastName,password,confirmPassword])
 
   const handleSubmit = (e) => {
     e.preventDefault();

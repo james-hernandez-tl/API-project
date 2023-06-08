@@ -20,7 +20,7 @@ export default function GroupLayout({group}){
 
                 <div className="group-layout-about">{group.about}</div>
 
-                <div>{group.numMembers} {group.numMembers !== 1?"Members ·":"Member ·"} {group.private?" Private":" Public"}</div>
+                <div className="group-layout-text-numMembers">{group.numMembers} {group.numMembers !== 1?"Members ·":"Member ·"} {group.private?" Private":" Public"}</div>
             </div>
         </div>
      )

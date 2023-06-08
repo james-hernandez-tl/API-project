@@ -11,10 +11,10 @@ export default function EventsLayout({event,where}){
     }
 
     return (
-       <div className={where} onClick={eventLayoutClicker}>
+       <div className={`${where} eventLayout-main`} onClick={eventLayoutClicker}>
           <div className="EventsLayout-top-half">
               <div className="EventLayout-img"><img className="EventLayout-img-real" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
-              <div>
+              <div className="EventsLayout-top-half-text">
                 <div>{time[0]}{" · "}{time[1]}</div>
                 <div>{event.name}</div>
                 <div>{event.Venue.state},{event.Venue.city}</div>

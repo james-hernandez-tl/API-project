@@ -26,6 +26,10 @@ export default function SingleEvent() {
         prevImg = prevImg?prevImg.url:undefined
     }
     let groupPrevImg = group.previewImage
+    if (group.GroupImages){
+        groupPrevImg = group.GroupImages.find(img => img.preview)
+        groupPrevImg = groupPrevImg?groupPrevImg.url:undefined
+    }
 
     useEffect(() => {
         dispatch(setEventThunk(eventId))
@@ -33,7 +37,7 @@ export default function SingleEvent() {
 
     useEffect(() => {
         if (event.groupId) dispatch(setGroupThunk(event.groupId))
-    }, [event,dispatch])
+    }, [event,dispatch,eventId])
 
     // useEffect()
 
@@ -48,11 +52,11 @@ export default function SingleEvent() {
             <div className="singleEvent-header">
                 <div> {"< "}<Link exact={"true"} to="/events">Events</Link> </div>
                 <h2>{event.name}</h2>
-                <div>Hosted by {` ${group.Organizer.firstName} ${group.Organizer.lastName}`} </div>
+                <div className="singleEvent-header-organizer">Hosted by {` ${group.Organizer.firstName} ${group.Organizer.lastName}`} </div>
             </div>
             <div className="singleEvent-content">
                 <div className="singleEvent-content-top-half">
-                    <div><img className="singleEvent-deatail-img" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
+                    <div className="SingleEvent-content-main-img-holder"><img className="singleEvent-deatail-img" src={prevImg??'https://i.imgur.com/pXWL35P.png'} alt="" /></div>
                     <div className="singleEvent-content-top-half-right">
                         <div className="singleEvent-content-top-half-right-top" onClick={eventGroupClciker}>
                             <div><img className="singleEvent-detail-group-img" src={groupPrevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" /></div>
@@ -63,18 +67,18 @@ export default function SingleEvent() {
                         </div>
                         <div className="singleEvent-content-top-half-right-bottom">
                             <div>
-                                <div><i className="fa-regular fa-clock"></i></div>
+                                <div className="singleEvent-content-top-half-right-bottom-Icon-holders"><i className="fa-regular fa-clock"></i></div>
                                 <div>
                                     <div>Start {` ${event.startDate.split("T")[0]} ·  ${event.startDate.split("T")[1]}`}</div>
-                                    <div>End {` ${event.endDate.split("T")[0]} · ${event.endDate.split("T")[1]}`}</div>
+                                    <div>End{`   ${event.endDate.split("T")[0]} · ${event.endDate.split("T")[1]}`}</div>
                                 </div>
                             </div>
                             <div>
-                                <div><i className="fa-solid fa-dollar-sign"></i></div>
+                                <div className="singleEvent-content-top-half-right-bottom-Icon-holders"><i className="fa-solid fa-dollar-sign"></i></div>
                                 <div>{event.price > 0? event.price:"Free"}</div>
                             </div>
                             <div>
-                                <div><i className="fa-solid fa-location-dot"></i></div>
+                                <div className="singleEvent-content-top-half-right-bottom-Icon-holders"><i className="fa-solid fa-location-dot"></i></div>
                                 <div className="singleEvent-button-holder"><div>{event.type}</div> <div>{user && user.id === group.organizerId && <button className="singleEvent-button">Update</button>}</div><div>{user && user.id === group.organizerId && <OpenModalButton buttonText="Delete" modalComponent={<DeleteEvent groupId={group.id} eventId={eventId} />}  />  }</div> </div>
                             </div>
                         </div>
