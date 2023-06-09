@@ -9,7 +9,6 @@ export default function DeleteEvent(eventId){
     const dispatch = useDispatch()
     const {closeModal} = useModal()
 
-    console.log("event",eventId)
 
     const deleteEventClicker = () => {
         dispatch(removeEventThunk(eventId.eventId))

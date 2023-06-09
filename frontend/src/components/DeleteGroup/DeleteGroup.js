@@ -9,7 +9,6 @@ export default function DeleteGroup(groupId){
     const dispatch = useDispatch()
     const {closeModal} = useModal()
 
-    console.log(groupId)
 
     const deleteGroupClicker = () => {
         dispatch(removeGroupThunk(groupId.groupId))
