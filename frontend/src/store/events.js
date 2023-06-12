@@ -83,7 +83,6 @@ export const createEventThunk = (event) => async (dispatch) => {
             "endDate": event.endDate,
           })
     })
-
     //https://i.imgur.com/x0G1BKy.jpeg
     //12/25/2025 05:30 PM
 

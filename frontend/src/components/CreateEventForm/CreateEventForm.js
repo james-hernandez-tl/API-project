@@ -62,6 +62,7 @@ export default function CreateEventForm() {
         const newErrors = {}
 
         if (!eventName.length) newErrors.name = "Name is required"
+        if (eventName.length < 5) newErrors.name = "Name needs to be 5 characters"
         if (type !== "Online" && type!=="In person") newErrors.type = "type is required"
         if (privateOrPublic !== "Private" && privateOrPublic !== "Public") newErrors.private = "Visibility is required"
         if (!price) newErrors.price = "Price is required"
@@ -72,11 +73,20 @@ export default function CreateEventForm() {
         if (!image.endsWith(".png") && !image.endsWith(".jpg") && !image.endsWith(".jpeg")) newErrors.image = "Image URL must end in .png, .jpg, or .jpeg"
         if (describe.length < 50) newErrors.describe = "Description must be at least 50 characters long"
 
+        if (eventStart.length && eventEnd.length){
+            if (!Date.parse(eventEnd)) newErrors.endNotDate = "event end needs to be a real date formated like in the example"
+            if (!Date.parse(eventStart)) newErrors.startNotDate = "event start needs to be a real date formated like in the example"
+            if (Date.parse(eventEnd) && Date.parse(eventStart)){
+                if (eventEnd < eventStart) newErrors.orderDate = "start date must be before end date"
+            }
+        }
+
        setErrors(newErrors)
 
     },[eventName,type,privateOrPublic,price,eventStart,eventEnd,image,describe])
 
      const submitform = async (e) => {
+
         e.preventDefault()
         if (Object.values(errors).length) {
             setSubmited(true)
@@ -140,6 +150,7 @@ export default function CreateEventForm() {
                 <div><i className="fa-regular fa-calendar-days"></i></div>
             </div>
             <div className="createEvent-erros">{submited && errors.start}</div>
+            <div className="createEvent-erros">{submited && errors.startNotDate}</div>
 
             <div>When does your event end?</div>
             <div className="createEventForm-input-with-icon-holder">
@@ -147,6 +158,8 @@ export default function CreateEventForm() {
                 <div><i className="fa-regular fa-calendar-days"></i></div>
             </div>
             <div className="createEvent-erros">{submited && errors.end}</div>
+            <div className="createEvent-erros">{submited && errors.endNotDate}</div>
+            <div className="createEvent-erros">{submited && errors.orderDate}</div>
 
             <hr />
 

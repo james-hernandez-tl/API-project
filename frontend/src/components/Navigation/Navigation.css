@@ -54,3 +54,34 @@
     font-size: 20px;
     margin: 5px;
 }
+
+.profile-dropdown > li {
+   list-style-type: none;
+}
+
+.profile-dropdown {
+    border: 2px solid black;
+    text-align: center;
+    padding: 5px 15px;
+    position: absolute;
+    right: 10px;
+    background-color: white;
+}
+
+.profile-log-out-button-holder > button {
+   background-color: white;
+   border: none;
+}
+
+.profile-log-out-button-holder {
+    border-top: 2px solid black;
+}
+
+.profile-link-holders > a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-user-email {
+    border-bottom: 2px solid black;
+}

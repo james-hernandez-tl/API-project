@@ -612,6 +612,7 @@ router.get('/current', async (req,res)=>{
     }
 
     if (Object.keys(errorResult.errors).length){
+      console.log(errorResult)
       res.status(400)
       return res.json(errorResult)
     }

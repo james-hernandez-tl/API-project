@@ -74,6 +74,7 @@ export default function GroupFormInput({formType, currentGroup}){
       if (!cityState.includes(",")) newErrors.location = "need both city and state"
       if (!cityState.length) newErrors.location = "Location is required"
       if (!groupName.length) newErrors.groupName = "Name is required"
+      // if (groupName.length < 4) newErrors.groupName = "Name needs to be 4 characters"
       if (description.length < 50) newErrors.description = "Description must be at least 50 characters long"
       if (!imageUrl.endsWith(".png") && !imageUrl.endsWith(".jpg") && !imageUrl.endsWith(".jpeg")) newErrors.image = "Image URL must end in .png, .jpg, or .jpeg "
       if (type !== "Online" && type !== "In person") newErrors.type = "Group Type is required"
