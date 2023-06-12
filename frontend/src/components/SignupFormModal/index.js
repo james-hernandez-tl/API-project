@@ -65,7 +65,7 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="sign-up-form-errors"> {errors.email}</p>}
         <label>
           <input
             placeholder="Username"
@@ -76,7 +76,7 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="sign-up-form-errors">{errors.username}</p>}
         <label>
           <input
             placeholder="First Name"
@@ -87,7 +87,7 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className="sign-up-form-errors">{errors.firstName}</p>}
         <label>
           <input
             placeholder="Last Name"
@@ -98,7 +98,7 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className="sign-up-form-errors">{errors.lastName}</p>}
         <label>
           <input
             placeholder="Password"
@@ -109,7 +109,7 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="sign-up-form-errors">{errors.password}</p>}
         <label>
           <input
             placeholder="Confirm Password"
@@ -121,7 +121,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
+          <p className="sign-up-form-errors">{errors.confirmPassword}</p>
         )}
         <button className="signUp-form-submit-button" type="submit" disabled={disabled}>Sign Up</button>
       </form>

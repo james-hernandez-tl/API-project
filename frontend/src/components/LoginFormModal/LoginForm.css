@@ -33,3 +33,7 @@
 .logIn-main-div {
     border-radius: 30%;
 }
+
+.log-in-form-errors {
+    color:red
+}

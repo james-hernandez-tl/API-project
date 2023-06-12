@@ -18,3 +18,7 @@
     margin: 5px 0 10px;
     box-shadow: 2px 3px 3px black;
 }
+
+.sign-up-form-errors {
+    color:red
+}

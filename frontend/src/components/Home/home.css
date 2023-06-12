@@ -64,6 +64,7 @@
 .home-section3 > div {
     width: 300px;
     text-align: center;
+    margin: 0 10px;
 }
 
 .join-meetup-button {

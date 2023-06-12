@@ -12,13 +12,8 @@ export default function AllEvents(){
     allEvents = Object.values(allEvents)
     allEvents = allEvents.sort((a,b)=>{
         const currentDate = new Date()
-        const aDate = new Date(a.startDate.split("T")[0])
-        const bDate = new Date(b.startDate.split("T")[0])
-
-        if (currentDate > bDate) return 0
-        if (currentDate > aDate) return 1
-        if (aDate > bDate) return 1
-        return 0
+        if (currentDate - a.startDate > 1) return 5
+        return a.startDate - b.startDate
     })
 
 
