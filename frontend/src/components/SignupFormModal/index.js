@@ -14,15 +14,23 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-  const [disabled,setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
 
-  useEffect(()=>{
-    let disableButton = false
+  useEffect(() => {
+    let disableButton = false;
 
-    if (!email.length || username.length < 4 || !firstName.length || !lastName.length || password.length < 6 || !confirmPassword.length) disableButton = true
+    if (
+      !email.length ||
+      username.length < 4 ||
+      !firstName.length ||
+      !lastName.length ||
+      password.length < 6 ||
+      !confirmPassword.length
+    )
+      disableButton = true;
 
-    setDisabled(disableButton)
-  },[email,username,firstName,lastName,password,confirmPassword])
+    setDisabled(disableButton);
+  }, [email, username, firstName, lastName, password, confirmPassword]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,13 +49,14 @@ function SignupFormModal() {
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
-            console.log(data)
+            console.log(data);
             setErrors(data.errors);
           }
         });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        "Confirm Password field must be the same as the Password field",
     });
   };
 
@@ -57,7 +66,7 @@ function SignupFormModal() {
       <form onSubmit={handleSubmit}>
         <label>
           <input
-          placeholder="email"
+            placeholder="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -76,7 +85,9 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.username && <p className="sign-up-form-errors">{errors.username}</p>}
+        {errors.username && (
+          <p className="sign-up-form-errors">{errors.username}</p>
+        )}
         <label>
           <input
             placeholder="First Name"
@@ -87,7 +98,9 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.firstName && <p className="sign-up-form-errors">{errors.firstName}</p>}
+        {errors.firstName && (
+          <p className="sign-up-form-errors">{errors.firstName}</p>
+        )}
         <label>
           <input
             placeholder="Last Name"
@@ -98,7 +111,9 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.lastName && <p className="sign-up-form-errors">{errors.lastName}</p>}
+        {errors.lastName && (
+          <p className="sign-up-form-errors">{errors.lastName}</p>
+        )}
         <label>
           <input
             placeholder="Password"
@@ -109,7 +124,9 @@ function SignupFormModal() {
             className="signUp-forn-inputs"
           />
         </label>
-        {errors.password && <p className="sign-up-form-errors">{errors.password}</p>}
+        {errors.password && (
+          <p className="sign-up-form-errors">{errors.password}</p>
+        )}
         <label>
           <input
             placeholder="Confirm Password"
@@ -123,7 +140,13 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p className="sign-up-form-errors">{errors.confirmPassword}</p>
         )}
-        <button className="signUp-form-submit-button" type="submit" disabled={disabled}>Sign Up</button>
+        <button
+          className="signUp-form-submit-button"
+          type="submit"
+          disabled={disabled}
+        >
+          Sign Up
+        </button>
       </form>
     </div>
   );

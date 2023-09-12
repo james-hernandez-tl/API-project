@@ -1,0 +1,76 @@
+.LandingPage {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-bottom: 150px;
+  max-width: 1409px;
+  height: 150%;
+  margin: auto;
+  padding-top: 100px;
+  padding: 50px 100px 150px 100px;
+}
+
+.LandingPage-left-title {
+  font-size: 90px;
+  font-weight: bolder;
+  margin: 50px 0 80px;
+  margin-left: 100px;
+}
+
+.LandingPage-right-main-img {
+  width: 400px;
+  margin: 20px 0 40px;
+}
+
+.LandingPage-left-body {
+  font-size: 30px;
+  line-height: 150%;
+  padding: 0 50px;
+  text-align: left;
+}
+
+.LandingPage button {
+  background-color: #868791;
+  color: white;
+  margin: 30px;
+  font-size: 12px;
+}
+
+.LandingPage-left-button-wrapper > button {
+  padding: 10px 20px;
+  margin-left: 200px;
+}
+
+.LandingPage-right {
+  text-align: center;
+}
+
+.LandingPage-right-button-wrapper {
+  position: relative;
+}
+
+.LandingPage-right-button-wrapper > button {
+  padding: 12px 80px;
+  margin: 30px 10px;
+}
+
+.LandingPage-right-demoUser {
+  position: absolute;
+  bottom: 8px;
+  right: 20%;
+  font-size: 12px;
+}
+
+.LandingPage-right-footer {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+.LandingPage-right-footer > div {
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.LandingPage-right-icon {
+  height: 110px;
+}

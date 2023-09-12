@@ -1,9 +1,31 @@
 /* TODO Add site wide styles */
 body {
-    margin: 0;
-    font-family: 'Hind Siliguri', sans-serif;
+  margin: 0;
+  /* font-family: "Hind Siliguri", sans-serif; */
+  font-family: sans-serif;
+  height: 100%;
 }
 
 #modal {
-    border-radius: 25px;
+  border-radius: 25px;
+}
+
+#root {
+  height: 100%;
+}
+
+#Dark {
+  background-color: #1a1c25;
+  color: white;
+  min-height: 100vh;
+}
+
+#light {
+  background-color: white;
+  color: black;
+  height: 100%;
+}
+
+#Dark a {
+  color: #a4e0fa;
 }

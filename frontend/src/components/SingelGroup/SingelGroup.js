@@ -1,65 +1,99 @@
-import { useParams,useHistory } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect} from "react"
-import { setGroupThunk } from "../../store/allGroups"
-import { Link } from "react-router-dom"
-import "./singelGroup.css"
-import Events from "../events/Events"
-import OpenModalButton from "../OpenModalButton"
-import DeleteGroup from "../DeleteGroup/DeleteGroup"
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setGroupThunk } from "../../store/allGroups";
+import { Link } from "react-router-dom";
+import "./singelGroup.css";
+import Events from "../events/Events";
+import OpenModalButton from "../OpenModalButton";
+import DeleteGroup from "../DeleteGroup/DeleteGroup";
 
+export default function SingelGroup() {
+  const history = useNavigate();
+  const dispatch = useDispatch();
+  const { groupId } = useParams();
+  const group = useSelector((state) => state.Groups.singleGroup);
+  const user = useSelector((state) => state.session.user);
 
-export default function SingelGroup(){
-    const history = useHistory()
-    const dispatch = useDispatch()
-    const {groupId} = useParams()
-    const group = useSelector( state => state.Groups.singleGroup)
-    const user = useSelector(state => state.session.user)
+  const singelGroupClicker = (e) => {
+    e.preventDefault();
 
+    alert("Feature Coming Soon...");
+  };
 
-    const singelGroupClicker = (e) => {
-        e.preventDefault()
+  const createEventClicker = (e) => {
+    history(`/groups/${group.id}/events/new`);
+  };
 
-        alert("Feature Coming Soon...")
-    }
+  const updateGroupClicker = (e) => {
+    history(`/groups/${group.id}/edit`);
+  };
 
-    const createEventClicker = (e) => {
-       history.push(`/groups/${group.id}/events/new`)
-    }
+  useEffect(() => {
+    dispatch(setGroupThunk(groupId));
+  }, [groupId, dispatch]);
 
-    const updateGroupClicker = (e) => {
-        history.push(`/groups/${group.id}/edit`)
-    }
+  if (!Object.keys(group).length) return null;
 
-    useEffect(()=>{
-        dispatch(setGroupThunk(groupId))
-    },[groupId,dispatch])
-
-    if (!Object.keys(group).length) return null
-
-    let prevImg = group.GroupImages.find(imageObj => imageObj.preview)
-    prevImg = prevImg? prevImg.url :undefined
-    return (
-        <div className="singleGroup-main">
-        <div className="singleGroup-top-half">
-             <div className="singleGroup-breadCrumb">{"<"}<Link exact={"true"} to="/groups">Groups</Link></div>
-             <div className="singleGroup-top-half-main" >
-                <div className="singleGroup-top-half-left">
-                    <img className="singleGroup-top-half-left-img" src={prevImg?prevImg:"https://i.imgur.com/2EGj2Rk.jpeg"} alt="" />
-                </div>
-                <div className="singleGroup-top-half-right">
-                    <h2>{group.name}</h2>
-                    <div>{group.state}, {group.city}</div>
-                    <div>{group.numMembers} Members · {group.private?"Private":"Public"}</div>
-                    <div>Organized by {" "+group.Organizer.firstName+" "} {group.Organizer.lastName}</div>
-                    <div className="singleGroup-top-half-right-button-holder">
-                    {user && user.id !== group.organizerId && <button onClick={singelGroupClicker} className="singleGroup-join-group-button">Join this group</button>}
-                    {user && user.id === group.organizerId && <div className="singleGroup-button-holder"> <button onClick={createEventClicker}>Create Event</button> <button onClick={updateGroupClicker}>Update</button> <OpenModalButton buttonText="Delete" modalComponent={<DeleteGroup groupId={groupId} />}  />  </div>}
-                    </div>
-                </div>
-             </div>
+  let prevImg = group.GroupImages.find((imageObj) => imageObj.preview);
+  prevImg = prevImg ? prevImg.url : undefined;
+  return (
+    <div className="singleGroup-main">
+      <div className="singleGroup-top-half">
+        <div className="singleGroup-breadCrumb">
+          {"<"}
+          <Link exact={"true"} to="/groups">
+            Groups
+          </Link>
         </div>
-        <Events group={group}/>
+        <div className="singleGroup-top-half-main">
+          <div className="singleGroup-top-half-left">
+            <img
+              className="singleGroup-top-half-left-img"
+              src={prevImg ? prevImg : "https://i.imgur.com/2EGj2Rk.jpeg"}
+              alt=""
+            />
+          </div>
+          <div className="singleGroup-top-half-right">
+            <h2>{group.name}</h2>
+            <div>
+              {group.state}, {group.city}
+            </div>
+            <div>
+              {group.numMembers} Members ·{" "}
+              {group.private ? "Private" : "Public"}
+            </div>
+            <div>
+              Organized by {" " + group.Organizer.firstName + " "}{" "}
+              {group.Organizer.lastName}
+            </div>
+            <div className="singleGroup-top-half-right-button-holder">
+              {user && user.id !== group.organizerId && (
+                <button
+                  onClick={singelGroupClicker}
+                  className="singleGroup-join-group-button"
+                >
+                  Join this group
+                </button>
+              )}
+              {user && user.id === group.organizerId && (
+                <div className="singleGroup-button-holder">
+                  {" "}
+                  <button onClick={createEventClicker}>
+                    Create Event
+                  </button>{" "}
+                  <button onClick={updateGroupClicker}>Update</button>{" "}
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteGroup groupId={groupId} />}
+                  />{" "}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-    )
+      </div>
+      <Events group={group} />
+    </div>
+  );
 }

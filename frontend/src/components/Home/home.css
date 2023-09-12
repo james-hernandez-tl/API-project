@@ -1,78 +1,88 @@
 .home-section1 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 20px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 100px;
+  align-items: center;
+}
+
+.home-section1-text-header {
+  font-size: 50px;
+  line-height: 100%;
+  font-weight: bold;
 }
 
 .home-section2 {
-    margin: auto;
-    width: fit-content;
-    text-align: center;
-    padding-top: 0;
-    margin-top: 0;
-    margin-bottom: 50px;
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 50px;
 }
 
-.home-main-img{
-    width: 70%;
-    height: 80%;
+.home-main-img {
+  height: 450px;
 }
 
 .home-section3 {
-    display: flex;
-    width: fit-content;
-    margin: auto;
-    padding-top: 0;
-    margin-top: 0;
+  display: flex;
+  width: fit-content;
+  margin: auto;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .disable {
-    color: lightgray;
-    pointer-events: none;
+  color: lightgray;
+  pointer-events: none;
 }
 
 .home-section4 {
-    width: fit-content;
-    margin: auto;
+  width: fit-content;
+  margin: auto;
 }
 
 .home-section1-text {
-    padding: 0 40px;
+  padding: 0 40px;
 }
 
 .home-section1-text > h2 {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 .home-section2 > h3 {
-    font-size: 35px;
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding-bottom: 0px;
+  font-size: 35px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 0px;
 }
 
 .home-section2 > div {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .home-img {
-    display: flex;
-    justify-content: center;
-    font-size: 150px;
+  display: flex;
+  justify-content: center;
+  font-size: 150px;
+}
+
+.home-img > img {
+  height: 200px;
 }
 
 .home-section3 > div {
-    width: 300px;
-    text-align: center;
-    margin: 0 10px;
+  width: 300px;
+  text-align: center;
+  margin: 0 10px;
 }
 
 .join-meetup-button {
-    background-color: teal;
-    font-size: 20px;
-    padding: 10px 15px;
-    border: solid black 2px;
-    box-shadow: 1px 2px 2px black;
-    color: white;
-    margin: 20px 0 60px;
+  background-color: teal;
+  font-size: 20px;
+  padding: 10px 15px;
+  border: solid black 2px;
+  box-shadow: 1px 2px 2px black;
+  color: white;
+  margin: 20px 0 60px;
 }
