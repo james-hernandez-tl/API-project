@@ -5,6 +5,7 @@ import SignupFormModal from "../SignupFormModal";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { useEffect } from "react";
 
 export default function Landing() {
   const { setModalContent, setOnModalClose, closeModal } = useModal();
@@ -14,7 +15,10 @@ export default function Landing() {
   const Demo = (e) => {
     e.preventDefault();
     return dispatch(
-      sessionActions.login({ credential: "demo@user.io", password: "password" })
+      sessionActions.login({
+        credential: "james@user.io",
+        password: "password",
+      })
     )
       .then(closeModal)
       .then(() => navigate("/groups"))
@@ -22,6 +26,14 @@ export default function Landing() {
         const data = await res.json();
       });
   };
+
+  useEffect(() => {
+    let nav = document.getElementById("Navigation");
+    nav.classList.add("removeNav");
+    return () => {
+      nav.classList.remove("removeNav");
+    };
+  }, []);
 
   return (
     <div className="LandingPage">
@@ -33,26 +45,35 @@ export default function Landing() {
           Events are happening every day—sign up to join the fun.
         </div>
         <div className="LandingPage-left-button-wrapper">
-          <button onClick={() => setModalContent(<SignupFormModal />)}>
+          <button
+            className="pointer"
+            onClick={() => setModalContent(<SignupFormModal />)}
+          >
             JOIN MEETUP NOW
           </button>
         </div>
       </div>
       <div className="LandingPage-right">
         <div className="LandingPage-right-button-wrapper">
-          <button onClick={() => setModalContent(<LoginFormModal />)}>
+          <button
+            className="pointer"
+            onClick={() => setModalContent(<LoginFormModal />)}
+          >
             LOG IN
           </button>
-          <button onClick={() => setModalContent(<SignupFormModal />)}>
+          <button
+            className="pointer"
+            onClick={() => setModalContent(<SignupFormModal />)}
+          >
             SIGN UP
           </button>
-          <div className="LandingPage-right-demoUser" onClick={Demo}>
+          <div className="LandingPage-right-demoUser pointer" onClick={Demo}>
             CONTINUE AS DEMO USER
           </div>
         </div>
         <div>
           <img
-            className="LandingPage-right-main-img"
+            className="LandingPage-right-main-img pointer"
             src="https://cdn.discordapp.com/attachments/934145502252003410/1133880174488866907/20230726_235417_0001.png"
           ></img>
         </div>

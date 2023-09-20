@@ -5,6 +5,7 @@ export default function EventsLayout({ event, where }) {
   const time = event.startDate.split("T");
   const history = useNavigate();
   let prevImg = event.previewImage;
+  console.log(event);
 
   const eventLayoutClicker = () => {
     history(`/events/${event.id}`);
@@ -26,9 +27,9 @@ export default function EventsLayout({ event, where }) {
             {" · "}
             {time[1]}
           </div>
-          <div>{event.name}</div>
+          <div className="EventsLayout-top-half-text-name">{event.name}</div>
           <div>
-            {event.Venue.state},{event.Venue.city}
+            {event.Venue.state}, {event.Venue.city}
           </div>
         </div>
       </div>

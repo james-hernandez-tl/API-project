@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
+import { useNavigate } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -15,6 +16,7 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
   const [disabled, setDisabled] = useState(true);
+  let navigate = useNavigate();
 
   useEffect(() => {
     let disableButton = false;
@@ -46,6 +48,7 @@ function SignupFormModal() {
         })
       )
         .then(closeModal)
+        .then(() => navigate("/groups"))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {

@@ -1,32 +1,36 @@
 .EventsLayout {
-    cursor: pointer;
-    background-color: white;
-    margin-bottom: 20px;
-    border-radius: 20px;
+  cursor: pointer;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 .EventsLayout-top-half {
-    display: flex;
+  display: flex;
 }
 
-.everyEvent-layout{
-   border-top: solid black 2px;
-   cursor: pointer;
+.everyEvent-layout {
+  border-top: solid black 2px;
+  cursor: pointer;
 }
 
 .EventLayout-img-real {
-    width: 250px;
-    height: 150px;
+  width: 250px;
+  height: 150px;
 }
 
 .eventLayout-main {
-    padding: 10px;
+  padding: 10px;
 }
 
 .EventsLayout-top-half-text {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .EventsLayout-bottom-half {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.EventsLayout-top-half-text-name {
+  margin: 10px 0;
 }

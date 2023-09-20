@@ -13,15 +13,8 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const [search, setSearch] = useState("");
   const { theme, setTheme } = useTheme();
-  const [isHome, setIsHome] = useState(true);
   // const searchBar = useQuery();
   // console.log(searchBar.get("search"));
-
-  useEffect(() => {
-    if ((window.location.pathname === "/") !== isHome) setIsHome(!isHome);
-  });
-
-  if (isHome) return null;
 
   let sessionLinks;
   if (sessionUser) {
@@ -46,12 +39,12 @@ function Navigation({ isLoaded }) {
   }
 
   const searchFor = (e) => {
-    console.log(e.key);
+    // console.log(e.key);
   };
 
   return (
     <>
-      <div className="navigation">
+      <div id="Navigation" className="navigation">
         <div className="navifation-logo-search-wrapper">
           <NavLink className="navigation-logo" exact={"true"} to="/">
             Meetup
@@ -66,14 +59,14 @@ function Navigation({ isLoaded }) {
               onKeyDown={searchFor}
             ></input>
           </div>
-          <div
+          {/* <div
             onClick={() => {
               if (theme == "Dark") setTheme("light");
               else setTheme("Dark");
             }}
           >
             Swap
-          </div>
+          </div> */}
         </div>
         <div className="navigation-right">
           {sessionUser && (

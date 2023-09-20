@@ -1,11 +1,15 @@
 .events-main {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
-.events-content > h2 {
+#Dark .events-main {
+  background-color: black;
+}
 
+#Dark .everyEvent-layout {
+  border-top: #a4e0fa solid 1px;
 }
 
 .events-main {
-    padding: 20px 40px;
+  padding: 20px 40px;
 }

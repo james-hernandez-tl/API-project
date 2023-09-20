@@ -1,30 +1,31 @@
 .group-layout {
-    display: flex;
-    cursor:pointer;
-    border-top: solid gray 2px;
+  display: flex;
+  cursor: pointer;
+  border-top: solid gray 2px;
 }
 
 .group-layout-img-real {
-    width: 300px;
-    height: 250px;
-    padding-right: 15px;
+  width: 300px;
+  height: 250px;
+  padding-right: 15px;
 }
 
 .group-layout {
-    padding: 15px 0;
-
+  padding: 15px 0;
 }
 
 .group-layout-text {
-    display: flex;
-    flex-direction: column;
-    height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
 }
 
-.group-layout-text-numMembers {
-    margin-top: 50px;
+.group-layout-text > h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .group-layout-location {
-    margin: 0 0 15px 0;
+  margin: 0 0 10px 0;
 }

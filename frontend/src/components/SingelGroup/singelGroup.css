@@ -1,61 +1,64 @@
 .singleGroup-top-half-main {
-    display: flex;
+  display: flex;
 }
 
 .singleGroup-button {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 
 .singleGroup-button-holder > button {
-    background-color: darkgray ;
-    color: white;
+  background-color: darkgray;
+  color: white;
 }
 
 .singleGroup-top-half-left-img {
-    width: 200px;
+  width: 200px;
 }
 
 .singleGroup-top-half-left-img {
-    width: 600px;
-    height: 400px;
+  width: 600px;
+  height: 400px;
 }
 
 .singleGroup-top-half {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 .singleGroup-breadCrumb {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .singleGroup-breadCrumb > a {
- margin-left: 10px;
- margin-bottom: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .singleGroup-top-half-right {
-    width: 400px ;
-    margin-left: 20px;
-    height: 400px;
+  width: 400px;
+  margin-left: 20px;
+  height: 400px;
 }
 
-
 .singleGroup-top-half-right > div {
-    padding: 5px 0;
+  padding: 5px 0;
 }
 
 .singleGroup-top-half-right-button-holder {
-    margin-top: 150px;
+  margin-top: 150px;
 }
 
 .singleGroup-join-group-button {
-    background-color:darkred;
-    color: white;
-    padding: 10px 15px;
-    font-size: 20px;
+  background-color: darkred;
+  color: white;
+  padding: 10px 15px;
+  font-size: 20px;
+}
+
+#Dark .singleGroup-join-group-button {
+  background-color: #1d7ea8;
 }
 
 .singleGroup-main {
-    margin: 0;
+  margin: 0;
 }
