@@ -78,13 +78,13 @@ export default function Landing() {
           ></img>
         </div>
         <div className="LandingPage-right-footer">
-          <div>
+          <div className="create-group">
             <img
               src="https://cdn.discordapp.com/attachments/934145502252003410/1133862357181935838/20230726_224302_0003.png"
               alt=""
               className="LandingPage-right-icon"
             />
-            <div onClick={() => navigate("/groups/new")}>CREATE GROUPS</div>
+            <div className="pointer">CREATE GROUPS</div>
           </div>
           <div>
             <img
@@ -92,7 +92,9 @@ export default function Landing() {
               alt=""
               className="LandingPage-right-icon"
             />
-            <div onClick={() => navigate("/groups")}>JOIN GROUPS</div>
+            <div className="pointer" onClick={() => navigate("/groups")}>
+              JOIN GROUPS
+            </div>
           </div>
           <div>
             <img
@@ -100,7 +102,9 @@ export default function Landing() {
               alt=""
               className="LandingPage-right-icon"
             />
-            <div onClick={() => navigate("/events")}>ATTEND EVENTS</div>{" "}
+            <div className="pointer" onClick={() => navigate("/events")}>
+              ATTEND EVENTS
+            </div>{" "}
           </div>
         </div>
       </div>

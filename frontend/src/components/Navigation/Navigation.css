@@ -121,3 +121,12 @@
   display: flex;
   align-items: center;
 }
+
+#Dark .navigation-button-holder > button {
+  background-color: #1a1c25;
+  color: #a4e0fa;
+}
+
+#Dark .navigation-button-holder > button:hover {
+  cursor: pointer;
+}

@@ -78,3 +78,8 @@
 .removeNav {
   display: none;
 }
+
+.create-group {
+  color: rgba(255, 255, 255, 50%);
+  text-decoration: none;
+}
