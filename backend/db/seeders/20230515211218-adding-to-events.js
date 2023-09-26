@@ -62,6 +62,30 @@ module.exports = {
           startDate: new Date("2021-12-19"),
           endDate: new Date("2021-12-19"),
         },
+        {
+          groupId: 4,
+          venueId: 3,
+          name: "Burger Fest Extravaganza",
+          description:
+            "Join us for a mouthwatering celebration of all things burger at the Burger Bliss Society's Burger Fest Extravaganza! We believe that every bite of a burger should be a reason to celebrate, and this event is designed to satisfy your burger cravings like never before.",
+          type: "In person",
+          capacity: 15,
+          price: 10.5,
+          startDate: new Date("2022-11-19"),
+          endDate: new Date("2022-11-19"),
+        },
+        {
+          groupId: 3,
+          venueId: 2,
+          name: "Big Apple Marathon Challenge",
+          description:
+            "Lace up your running shoes and get ready to conquer the iconic streets of the Big Apple! Join the New York Road Runners for an unforgettable marathon experience that takes you through the heart of New York City in the Big Apple Marathon Challenge.",
+          type: "In person",
+          capacity: 10000,
+          price: 68.5,
+          startDate: new Date("2021-10-19"),
+          endDate: new Date("2021-10-19"),
+        },
       ],
       {}
     );
